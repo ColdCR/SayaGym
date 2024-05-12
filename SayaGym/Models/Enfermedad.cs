@@ -13,5 +13,8 @@
         [Required]
         [StringLength(50)]
         public string NombreEnfermedad { get; set; }
+
+        public ICollection<EnfermedadUsuario> EnfermedadesUsuarios { get; set; }
+        public ICollection<EnfermedadProhibidaEjercicio> EnfermedadesProhibidasEjercicios { get; set; }
     }
 }

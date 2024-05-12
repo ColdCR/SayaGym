@@ -11,5 +11,6 @@
         [MaxLength(20)]
         public string AreaATrabajar { get; set; }
 
+        public Usuario Usuario { get; set; }
     }
 }

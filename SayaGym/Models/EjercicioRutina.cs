@@ -7,10 +7,14 @@
     [Table("EjerciciosRutina")]
     public class EjercicioRutina
     {
-        [Key]
+
         public int IdRutina { get; set; }
-        [Key]
+
         public int IdEjercicio { get; set; }
+
+        public Rutina Rutina { get; set; }
+
+        public Ejercicio Ejercicio { get; set; }
 
     }
 }

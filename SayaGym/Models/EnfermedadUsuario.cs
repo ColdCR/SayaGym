@@ -7,11 +7,13 @@
     [Table("EnfermedadesUsuario")]
     public class EnfermedadUsuario
     {
-        [Key]
+
         public int IdEnfermedad { get; set; }
 
-        [Key]
+
         public int IdUsuario { get; set; }
+
+        public Usuario Usuario { get; set; }
 
     }
 }

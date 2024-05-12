@@ -5,7 +5,6 @@
 
     public class Usuario
     {
-        [Key]
         public int IdUsuario { get; set; }
 
         [Required]
@@ -27,7 +26,6 @@
         [StringLength(8)]
         public string Teléfono { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string Dirección { get; set; }
 
@@ -48,8 +46,11 @@
         [Required]
         public int Objetivo { get; set; }
 
-        [Required]
         [DefaultValue('A')]
         public char Estado { get; set; }
+
+        public Rutina Rutina { get; set; }
+        public ICollection<AreasATrabajarUsuario> AreasATrabajar { get; set; }
+        public ICollection<EnfermedadUsuario> EnfermedadesUsuario { get; set; }
     }
 }

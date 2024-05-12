@@ -7,10 +7,12 @@
     [Table("EnfermedadesProhibidasEjercicios")]
     public class EnfermedadProhibidaEjercicio
     {
-        [Key]
+
         public int IdEjercicio { get; set; }
 
-        [Key]
+
         public int IdEnfermedad { get; set; }
+        public Ejercicio Ejercicio { get; set; }
+        public Enfermedad Enfermedad { get; set; }
     }
 }

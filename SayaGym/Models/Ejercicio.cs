@@ -21,5 +21,8 @@
         [Required]
         [StringLength(50)]
         public string AreaATrabajar { get; set; }
+
+        public ICollection<EjercicioRutina> Ejercicios { get; set; }
+        public ICollection<EnfermedadUsuario> EnfermedadesUsuario { get; set; }
     }
 }
