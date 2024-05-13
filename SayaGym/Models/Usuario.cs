@@ -1,10 +1,11 @@
-﻿namespace SayaGym.Models
-{
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
+namespace SayaGym.Models
+{
     public class Usuario
     {
+        [Key]
         public int IdUsuario { get; set; }
 
         [Required]

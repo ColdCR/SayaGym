@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using SayaGym.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -16,9 +17,7 @@ namespace SayaGym
         {
             services.AddControllersWithViews();
 
-            string conString;
-
-           
+            string conString;        
 
             services.AddDbContext<Contexto>(options =>
             {
@@ -61,3 +60,4 @@ namespace SayaGym
         }
     }
 }
+*/

@@ -70,7 +70,5 @@ namespace SayaGym.Data
 
         public DbSet<Usuario> Usuario { get; set; }
 
-
-
     }
 }
