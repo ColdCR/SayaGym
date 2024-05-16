@@ -77,6 +77,9 @@ namespace SayaGym.Migrations
                     b.Property<int>("IdRutina")
                         .HasColumnType("int");
 
+                    b.Property<int>("DiaEjercicio")
+                        .HasColumnType("int");
+
                     b.Property<int>("EjercicioIdEjercicio")
                         .HasColumnType("int");
 
@@ -141,9 +144,6 @@ namespace SayaGym.Migrations
                     b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EjercicioIdEjercicio")
-                        .HasColumnType("int");
-
                     b.Property<int?>("EnfermedadIdEnfermedad")
                         .HasColumnType("int");
 
@@ -151,8 +151,6 @@ namespace SayaGym.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IdEnfermedad", "IdUsuario");
-
-                    b.HasIndex("EjercicioIdEjercicio");
 
                     b.HasIndex("EnfermedadIdEnfermedad");
 
@@ -168,9 +166,6 @@ namespace SayaGym.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRutina"));
-
-                    b.Property<int>("DiaRutina")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaRutina")
                         .HasColumnType("datetime2");
@@ -298,7 +293,7 @@ namespace SayaGym.Migrations
             modelBuilder.Entity("SayaGym.Models.EnfermedadProhibidaEjercicio", b =>
                 {
                     b.HasOne("SayaGym.Models.Ejercicio", "Ejercicio")
-                        .WithMany()
+                        .WithMany("EnfermedadesProhibidasUsuario")
                         .HasForeignKey("EjercicioIdEjercicio")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -316,10 +311,6 @@ namespace SayaGym.Migrations
 
             modelBuilder.Entity("SayaGym.Models.EnfermedadUsuario", b =>
                 {
-                    b.HasOne("SayaGym.Models.Ejercicio", null)
-                        .WithMany("EnfermedadesUsuario")
-                        .HasForeignKey("EjercicioIdEjercicio");
-
                     b.HasOne("SayaGym.Models.Enfermedad", null)
                         .WithMany("EnfermedadesUsuarios")
                         .HasForeignKey("EnfermedadIdEnfermedad");
@@ -348,7 +339,7 @@ namespace SayaGym.Migrations
                 {
                     b.Navigation("Ejercicios");
 
-                    b.Navigation("EnfermedadesUsuario");
+                    b.Navigation("EnfermedadesProhibidasUsuario");
                 });
 
             modelBuilder.Entity("SayaGym.Models.Enfermedad", b =>

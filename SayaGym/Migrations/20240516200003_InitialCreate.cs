@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SayaGym.Migrations
 {
+    /// <inheritdoc />
     public partial class InitialCreate : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -113,17 +115,11 @@ namespace SayaGym.Migrations
                     IdEnfermedad = table.Column<int>(type: "int", nullable: false),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
                     UsuarioIdUsuario = table.Column<int>(type: "int", nullable: false),
-                    EjercicioIdEjercicio = table.Column<int>(type: "int", nullable: true),
                     EnfermedadIdEnfermedad = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EnfermedadesUsuario", x => new { x.IdEnfermedad, x.IdUsuario });
-                    table.ForeignKey(
-                        name: "FK_EnfermedadesUsuario_Ejercicios_EjercicioIdEjercicio",
-                        column: x => x.EjercicioIdEjercicio,
-                        principalTable: "Ejercicios",
-                        principalColumn: "IdEjercicio");
                     table.ForeignKey(
                         name: "FK_EnfermedadesUsuario_Enfermedades_EnfermedadIdEnfermedad",
                         column: x => x.EnfermedadIdEnfermedad,
@@ -144,8 +140,7 @@ namespace SayaGym.Migrations
                     IdRutina = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaRutina = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuario = table.Column<int>(type: "int", nullable: false),
-                    DiaRutina = table.Column<int>(type: "int", nullable: false)
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,6 +159,7 @@ namespace SayaGym.Migrations
                 {
                     IdRutina = table.Column<int>(type: "int", nullable: false),
                     IdEjercicio = table.Column<int>(type: "int", nullable: false),
+                    DiaEjercicio = table.Column<int>(type: "int", nullable: false),
                     RutinaIdRutina = table.Column<int>(type: "int", nullable: false),
                     EjercicioIdEjercicio = table.Column<int>(type: "int", nullable: false)
                 },
@@ -215,11 +211,6 @@ namespace SayaGym.Migrations
                 column: "EnfermedadIdEnfermedad");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnfermedadesUsuario_EjercicioIdEjercicio",
-                table: "EnfermedadesUsuario",
-                column: "EjercicioIdEjercicio");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EnfermedadesUsuario_EnfermedadIdEnfermedad",
                 table: "EnfermedadesUsuario",
                 column: "EnfermedadIdEnfermedad");
@@ -236,6 +227,7 @@ namespace SayaGym.Migrations
                 unique: true);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
