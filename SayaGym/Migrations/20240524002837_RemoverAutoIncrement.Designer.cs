@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SayaGym.Data;
 
@@ -11,9 +12,11 @@ using SayaGym.Data;
 namespace SayaGym.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20240524002837_RemoverAutoIncrement")]
+    partial class RemoverAutoIncrement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace SayaGym.Migrations
 
                     b.HasIndex("UsuarioIdUsuario");
 
-                    b.ToTable("AreasATrabajarUsuarios");
+                    b.ToTable("AreasATrabajarUsuario");
                 });
 
             modelBuilder.Entity("SayaGym.Models.Ejercicio", b =>
@@ -184,14 +187,7 @@ namespace SayaGym.Migrations
             modelBuilder.Entity("SayaGym.Models.Usuario", b =>
                 {
                     b.Property<int>("IdUsuario")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
-
-                    b.Property<string>("Cedula")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contraseña")
                         .IsRequired()
@@ -249,13 +245,12 @@ namespace SayaGym.Migrations
                         new
                         {
                             IdUsuario = 1,
-                            Cedula = "11111111",
                             Contraseña = "admin",
                             Correo = "admin@gmail.com",
                             Dirección = "",
                             Estado = "A",
                             Estatura = 170m,
-                            FechaDeNacimiento = new DateTime(2024, 5, 24, 19, 37, 18, 134, DateTimeKind.Local).AddTicks(6202),
+                            FechaDeNacimiento = new DateTime(2024, 5, 23, 18, 28, 36, 985, DateTimeKind.Local).AddTicks(4496),
                             Nombre = "Admin",
                             Objetivo = 0,
                             Peso = 80m,

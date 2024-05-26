@@ -10,10 +10,11 @@
 
         public int IdEnfermedad { get; set; }
 
-
         public int IdUsuario { get; set; }
 
         public Usuario Usuario { get; set; }
+
+        public Enfermedad Enfermedad { get; set; }
 
     }
 }

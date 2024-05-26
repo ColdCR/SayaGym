@@ -35,7 +35,7 @@
                             </li>
                         }
 
-                        @if (User.IsInRole("2") || User.IsInRole("1"))
+                        @if (!User.IsInRole("2"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Usuarios</a>

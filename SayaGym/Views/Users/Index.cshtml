@@ -44,6 +44,9 @@
                 @Html.DisplayNameFor(model => model.Estatura)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.IMC)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Edad)
             </th>
             <th>
@@ -89,6 +92,9 @@
                 @Html.DisplayFor(modelItem => item.Estatura)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.IMC)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Edad)
             </td>
             <td>
@@ -98,9 +104,9 @@
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdUsuario }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdUsuario })
             </td>
         </tr>
 }

@@ -39,9 +39,11 @@ namespace SayaGym.Data
             modelBuilder.Entity<AreasATrabajarUsuario>()
                 .HasKey(er => new { er.AreaATrabajar, er.IdUsuario });
 
-            modelBuilder.Entity<Usuario>().HasData(
+            modelBuilder.Entity<Usuario>()
+            .HasData(
                 new Usuario {
                     IdUsuario = 1,
+                    Cedula = "11111111",
                     Rol = 0,
                     Contraseña = "admin",
                     Nombre = "Admin",
@@ -50,12 +52,25 @@ namespace SayaGym.Data
                     Correo = "admin@gmail.com",
                     Peso = 80,
                     Estatura = 170,
-                    Edad = 20,
+                    FechaDeNacimiento = DateTime.Now,
                     Objetivo = 0,
                     Estado = 'A',
                     Dirección = ""
                 }
             );
+
+            //modelBuilder.Entity<Enfermedad>().HasData(
+            //    new Enfermedad
+            //    {
+            //        IdEnfermedad = 1,
+            //        NombreEnfermedad = "Obesidad"
+            //    },
+            //    new Enfermedad
+            //    {
+            //        IdEnfermedad = 2,
+            //        NombreEnfermedad = "Asma"
+            //    }
+            //);
         }
 
         public DbSet<Ejercicio> Ejercicio { get; set; }
@@ -64,11 +79,12 @@ namespace SayaGym.Data
 
         public DbSet<EnfermedadProhibidaEjercicio> EnfermedadProhibidaEjercicio { get; set; }
 
-        public DbSet<EnfermedadUsuario> EnfermedadUsuario { get; set; }
+        public DbSet<EnfermedadUsuario> EnfermedadesUsuario { get; set; }
 
         public DbSet<Rutina> Rutina { get; set; }
 
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<AreasATrabajarUsuario> AreasATrabajarUsuario { get; set; }
 
     }
 }

@@ -42,21 +42,3 @@ app.MapControllerRoute(
 
 app.Run();
 
-// ---------------- INICIO VERSION JOSE -------------------------
-/* 
- 
-using Microsoft.AspNetCore.Hosting;
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-    public static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-        { webBuilder.UseStartup<SayaGym.Startup>(); });
-    }
-}*/
-// ---------------- FIN VERSION JOSE -------------------------
