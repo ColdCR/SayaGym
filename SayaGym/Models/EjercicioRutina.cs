@@ -12,6 +12,9 @@
 
         public int IdEjercicio { get; set; }
 
+        [Required]
+        public int DiaEjercicio { get; set; }
+
         public Rutina Rutina { get; set; }
 
         public Ejercicio Ejercicio { get; set; }

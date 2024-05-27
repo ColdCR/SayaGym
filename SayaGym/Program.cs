@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using SayaGym.Data;
 
@@ -6,10 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 //Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var StringConexion = builder.Configuration["StringConexionSecret"];
+if (StringConexion == null)
+{
+    //usar la que viene en appsetings.json
+    StringConexion = builder.Configuration.GetConnectionString("StringConexion");
+}
 //String de conexion
-builder.Services.AddDbContext<SayaGym.Data.Contexto>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("StringConexion")));
+builder.Services.AddDbContext<SayaGym.Data.Contexto>(options => options.UseSqlServer(StringConexion));
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
 
 var app = builder.Build();
 

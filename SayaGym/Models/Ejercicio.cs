@@ -23,6 +23,6 @@
         public string AreaATrabajar { get; set; }
 
         public ICollection<EjercicioRutina> Ejercicios { get; set; }
-        public ICollection<EnfermedadUsuario> EnfermedadesUsuario { get; set; }
+        public ICollection<EnfermedadProhibidaEjercicio> EnfermedadesProhibidasUsuario { get; set; }
     }
 }
