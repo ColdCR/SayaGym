@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SayaGym.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,12 @@ if (StringConexion == null)
 builder.Services.AddDbContext<SayaGym.Data.Contexto>(options => options.UseSqlServer(StringConexion));
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
+    .AddCookie(options => 
+    {
+        options.LoginPath = "/Login/login";
+        options.LogoutPath = "/Login/logout";
+    });
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

@@ -20,27 +20,32 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Salud" asp-action="Index">Salud</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("2"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Administracion de Usuarios</a>
+                            </li>
+                        }
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="btn btn-outline-success me-2 " type="button" asp-area="" asp-controller="Users" asp-action="Logout">Salir</a>
+                                <a class="btn btn-outline-success me-2 " type="button" asp-area="" asp-controller="Login" asp-action="Logout">Salir</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="btn btn-outline-success me-2 " type="button" asp-area="" asp-controller="Users" asp-action="Login">Ingresar</a>
+                                <a class="btn btn-outline-success me-2 " type="button" asp-area="" asp-controller="Login" asp-action="Login">Ingresar</a>
                             </li>
                         }
 
-                        @if (!User.IsInRole("2"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Usuarios</a>
-                            </li>
-                        }
+                       
                         
 
                     </ul>

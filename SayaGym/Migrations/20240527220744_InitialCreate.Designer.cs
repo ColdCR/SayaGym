@@ -12,8 +12,8 @@ using SayaGym.Data;
 namespace SayaGym.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20240523203056_EliminarEdad")]
-    partial class EliminarEdad
+    [Migration("20240527220744_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,6 +114,48 @@ namespace SayaGym.Migrations
                     b.HasKey("IdEnfermedad");
 
                     b.ToTable("Enfermedades");
+
+                    b.HasData(
+                        new
+                        {
+                            IdEnfermedad = 1,
+                            NombreEnfermedad = "Hipertensión"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 2,
+                            NombreEnfermedad = "Diabetes"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 3,
+                            NombreEnfermedad = "Problemas de espalda"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 4,
+                            NombreEnfermedad = "Problemas de rodilla"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 5,
+                            NombreEnfermedad = "Asma"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 6,
+                            NombreEnfermedad = "Enfermedad cardíaca"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 7,
+                            NombreEnfermedad = "Artritis"
+                        },
+                        new
+                        {
+                            IdEnfermedad = 8,
+                            NombreEnfermedad = "Osteoporosis"
+                        });
                 });
 
             modelBuilder.Entity("SayaGym.Models.EnfermedadProhibidaEjercicio", b =>
@@ -147,7 +189,7 @@ namespace SayaGym.Migrations
                     b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EnfermedadIdEnfermedad")
+                    b.Property<int>("EnfermedadIdEnfermedad")
                         .HasColumnType("int");
 
                     b.Property<int>("UsuarioIdUsuario")
@@ -191,6 +233,10 @@ namespace SayaGym.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
+
+                    b.Property<string>("Cedula")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contraseña")
                         .IsRequired()
@@ -248,12 +294,13 @@ namespace SayaGym.Migrations
                         new
                         {
                             IdUsuario = 1,
+                            Cedula = "11111111",
                             Contraseña = "admin",
                             Correo = "admin@gmail.com",
                             Dirección = "",
                             Estado = "A",
                             Estatura = 170m,
-                            FechaDeNacimiento = new DateTime(2024, 5, 23, 14, 30, 54, 896, DateTimeKind.Local).AddTicks(8917),
+                            FechaDeNacimiento = new DateTime(2024, 5, 27, 16, 7, 44, 498, DateTimeKind.Local).AddTicks(3641),
                             Nombre = "Admin",
                             Objetivo = 0,
                             Peso = 80m,
@@ -314,15 +361,19 @@ namespace SayaGym.Migrations
 
             modelBuilder.Entity("SayaGym.Models.EnfermedadUsuario", b =>
                 {
-                    b.HasOne("SayaGym.Models.Enfermedad", null)
+                    b.HasOne("SayaGym.Models.Enfermedad", "Enfermedad")
                         .WithMany("EnfermedadesUsuarios")
-                        .HasForeignKey("EnfermedadIdEnfermedad");
+                        .HasForeignKey("EnfermedadIdEnfermedad")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SayaGym.Models.Usuario", "Usuario")
                         .WithMany("EnfermedadesUsuario")
                         .HasForeignKey("UsuarioIdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Enfermedad");
 
                     b.Navigation("Usuario");
                 });

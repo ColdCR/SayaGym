@@ -7,7 +7,7 @@ namespace SayaGym.Data
     {
         public Contexto(DbContextOptions<Contexto> options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,7 +41,8 @@ namespace SayaGym.Data
 
             modelBuilder.Entity<Usuario>()
             .HasData(
-                new Usuario {
+                new Usuario
+                {
                     IdUsuario = 1,
                     Cedula = "11111111",
                     Rol = 0,
@@ -59,18 +60,48 @@ namespace SayaGym.Data
                 }
             );
 
-            //modelBuilder.Entity<Enfermedad>().HasData(
-            //    new Enfermedad
-            //    {
-            //        IdEnfermedad = 1,
-            //        NombreEnfermedad = "Obesidad"
-            //    },
-            //    new Enfermedad
-            //    {
-            //        IdEnfermedad = 2,
-            //        NombreEnfermedad = "Asma"
-            //    }
-            //);
+            modelBuilder.Entity<Enfermedad>().HasData(
+                new Enfermedad
+                {
+                    IdEnfermedad = 1,
+                    NombreEnfermedad = "Hipertensión",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 2,
+                NombreEnfermedad = "Diabetes",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 3,
+                NombreEnfermedad = "Problemas de espalda",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 4,
+                NombreEnfermedad = "Problemas de rodilla",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 5,
+                NombreEnfermedad = "Asma",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 6,
+                NombreEnfermedad = "Enfermedad cardíaca",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 7,
+                NombreEnfermedad = "Artritis",
+                },
+                new Enfermedad
+                {
+                    IdEnfermedad = 8,
+                NombreEnfermedad = "Osteoporosis",
+                }
+            );
         }
 
         public DbSet<Ejercicio> Ejercicio { get; set; }

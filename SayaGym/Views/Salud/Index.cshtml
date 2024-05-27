@@ -1,0 +1,49 @@
+﻿@model SayaGym.Models.Usuario
+
+@{
+    ViewData["Title"] = "Salud";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Salud</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IMC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                Enfermedades
+            </th>
+            <th>
+                Areas a trabajar
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Objetivo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+                @Html.DisplayFor(model => model.IMC)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Peso)
+        </td>
+        <td>
+               
+        </td>
+        <td>
+                
+        </td>
+        <td>
+                @Html.DisplayFor(model => model.Objetivo)
+        </td>
+    </tr>
+    </tbody>
+</table>

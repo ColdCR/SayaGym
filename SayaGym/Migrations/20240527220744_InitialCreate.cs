@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SayaGym.Migrations
 {
     /// <inheritdoc />
@@ -45,6 +47,7 @@ namespace SayaGym.Migrations
                 {
                     IdUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Cedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rol = table.Column<int>(type: "int", nullable: false),
                     Contraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -54,7 +57,7 @@ namespace SayaGym.Migrations
                     Correo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Peso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Estatura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Edad = table.Column<int>(type: "int", nullable: false),
+                    FechaDeNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Objetivo = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(1)", nullable: false)
                 },
@@ -115,7 +118,7 @@ namespace SayaGym.Migrations
                     IdEnfermedad = table.Column<int>(type: "int", nullable: false),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
                     UsuarioIdUsuario = table.Column<int>(type: "int", nullable: false),
-                    EnfermedadIdEnfermedad = table.Column<int>(type: "int", nullable: true)
+                    EnfermedadIdEnfermedad = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,7 +127,8 @@ namespace SayaGym.Migrations
                         name: "FK_EnfermedadesUsuario_Enfermedades_EnfermedadIdEnfermedad",
                         column: x => x.EnfermedadIdEnfermedad,
                         principalTable: "Enfermedades",
-                        principalColumn: "IdEnfermedad");
+                        principalColumn: "IdEnfermedad",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EnfermedadesUsuario_Usuario_UsuarioIdUsuario",
                         column: x => x.UsuarioIdUsuario,
@@ -181,9 +185,24 @@ namespace SayaGym.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Enfermedades",
+                columns: new[] { "IdEnfermedad", "NombreEnfermedad" },
+                values: new object[,]
+                {
+                    { 1, "Hipertensión" },
+                    { 2, "Diabetes" },
+                    { 3, "Problemas de espalda" },
+                    { 4, "Problemas de rodilla" },
+                    { 5, "Asma" },
+                    { 6, "Enfermedad cardíaca" },
+                    { 7, "Artritis" },
+                    { 8, "Osteoporosis" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Usuario",
-                columns: new[] { "IdUsuario", "Contraseña", "Correo", "Dirección", "Edad", "Estado", "Estatura", "Nombre", "Objetivo", "Peso", "Rol", "Sexo", "Teléfono" },
-                values: new object[] { 1, "admin", "admin@gmail.com", "", 20, "A", 170m, "Admin", 0, 80m, 0, "M", "00000000" });
+                columns: new[] { "IdUsuario", "Cedula", "Contraseña", "Correo", "Dirección", "Estado", "Estatura", "FechaDeNacimiento", "Nombre", "Objetivo", "Peso", "Rol", "Sexo", "Teléfono" },
+                values: new object[] { 1, "11111111", "admin", "admin@gmail.com", "", "A", 170m, new DateTime(2024, 5, 27, 16, 7, 44, 498, DateTimeKind.Local).AddTicks(3641), "Admin", 0, 80m, 0, "M", "00000000" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AreasATrabajarUsuario_UsuarioIdUsuario",

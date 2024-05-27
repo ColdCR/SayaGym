@@ -5,12 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SayaGym.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly Contexto _context = null;
+
 
         public UsersController (Contexto context)
         {
@@ -36,9 +39,9 @@ namespace SayaGym.Controllers
             return _context.Enfermedad.ToList();
         }
 
-        private Usuario GetUsuario(int Id)
+        private Usuario GetUsuario(int id)
         {
-            Usuario Usuario = _context.Usuario.Find(Id);
+            Usuario Usuario = _context.Usuario.Find(id);
             Usuario.EnfermedadesUsuario = _context.EnfermedadesUsuario.Where(e => e.IdUsuario == Usuario.IdUsuario).ToList();
             Usuario.AreasATrabajar = _context.AreasATrabajarUsuario.Where(e => e.IdUsuario == Usuario.IdUsuario).ToList();
             return Usuario;
@@ -53,32 +56,32 @@ namespace SayaGym.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int Id)
+        public IActionResult Edit(int id)
         {
 
             ViewBag.Enfermedades = GetEnfermedades();
-            Usuario Usuario = GetUsuario(Id);
+            Usuario Usuario = GetUsuario(id);
             return View(Usuario);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Usuario UsuarioEditado)
+        public IActionResult Edit(Usuario usuarioEditado)
         {
-            Usuario Usuario = GetUsuario(UsuarioEditado.IdUsuario);//obtener el usuario actual de la base de datos
+            Usuario Usuario = GetUsuario(usuarioEditado.IdUsuario);//obtener el usuario actual de la base de datos
 
             //solo tomar en cuenta campos que se pueden editar
-            Usuario.Nombre = UsuarioEditado.Nombre;
-            Usuario.Rol = UsuarioEditado.Rol;
-            Usuario.Sexo = UsuarioEditado.Sexo;
-            Usuario.Correo = UsuarioEditado.Correo;
-            Usuario.Teléfono = UsuarioEditado.Teléfono;
-            Usuario.Dirección = UsuarioEditado.Dirección;
-            Usuario.Peso = UsuarioEditado.Peso;
-            Usuario.Estatura = UsuarioEditado.Estatura;
-            Usuario.FechaDeNacimiento = UsuarioEditado.FechaDeNacimiento;
-            Usuario.Objetivo = UsuarioEditado.Objetivo;
-            Usuario.Estado = UsuarioEditado.Estado;
+            Usuario.Nombre = usuarioEditado.Nombre;
+            Usuario.Rol = usuarioEditado.Rol;
+            Usuario.Sexo = usuarioEditado.Sexo;
+            Usuario.Correo = usuarioEditado.Correo;
+            Usuario.Teléfono = usuarioEditado.Teléfono;
+            Usuario.Dirección = usuarioEditado.Dirección;
+            Usuario.Peso = usuarioEditado.Peso;
+            Usuario.Estatura = usuarioEditado.Estatura;
+            Usuario.FechaDeNacimiento = usuarioEditado.FechaDeNacimiento;
+            Usuario.Objetivo = usuarioEditado.Objetivo;
+            Usuario.Estado = usuarioEditado.Estado;
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
@@ -178,10 +181,10 @@ namespace SayaGym.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
 
-            var Usuario = _context.Usuario.Find(Id);
+            var Usuario = _context.Usuario.Find(id);
             if (Usuario != null) {
                 _context.Usuario.Remove(Usuario);
                 _context.SaveChanges();
@@ -192,7 +195,7 @@ namespace SayaGym.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Usuario Usuario)
+        public IActionResult Create(Usuario usuario)
         {
 
             using (var transaction = _context.Database.BeginTransaction())
@@ -205,24 +208,24 @@ namespace SayaGym.Controllers
                     var EnfermedadesForm = FormCollection["Enfermedades[]"];
 
 
-                    Usuario.Estado = 'A';
+                    usuario.Estado = 'A';
 
                     //verificamos que no exista usuario con la misma cedula
-                    bool findedUser = _context.Usuario.Any(u => u.Cedula == Usuario.Cedula);
+                    bool findedUser = _context.Usuario.Any(u => u.Cedula == usuario.Cedula);
                     if (findedUser)
                     {
                         throw new Exception("Ya existe un usuario con esa cédula");
                     }
 
                     //verificamos que no exista usuario con el mismo correo
-                    findedUser = _context.Usuario.Any(u => u.Correo == Usuario.Correo);
+                    findedUser = _context.Usuario.Any(u => u.Correo == usuario.Correo);
                     if (findedUser)
                     {
                         throw new Exception("Ya existe un usuario con ese correo");
                     }
 
                     //guardamos el usuario en la base de datos
-                    _context.Usuario.Add(Usuario);
+                    _context.Usuario.Add(usuario);
 
                     // Guardar los cambios en la base de datos
                     _context.SaveChanges();
@@ -234,9 +237,9 @@ namespace SayaGym.Controllers
                         if (Enfermedad == null) continue;
                         EnfermedadUsuario EnfermedadUsuario = new EnfermedadUsuario
                         {
-                            IdUsuario = Usuario.IdUsuario,
+                            IdUsuario = usuario.IdUsuario,
                             IdEnfermedad = idEnfermedad,
-                            Usuario = Usuario,
+                            Usuario = usuario,
                             Enfermedad = Enfermedad
 
                         };
@@ -248,9 +251,9 @@ namespace SayaGym.Controllers
 
                         AreasATrabajarUsuario Area = new AreasATrabajarUsuario
                         {
-                            IdUsuario = Usuario.IdUsuario,
+                            IdUsuario = usuario.IdUsuario,
                             AreaATrabajar = AreaForm,
-                            Usuario = Usuario
+                            Usuario = usuario
                         };
                         _context.AreasATrabajarUsuario.Add(Area);
                         _context.SaveChanges();
@@ -270,6 +273,11 @@ namespace SayaGym.Controllers
             return Create();
         }
 
+        public IActionResult Details(int id)
+        {
+            Usuario Usuario = GetUsuario(id);
+            return View(Usuario);
+        }
         private IEnumerable<Enfermedad> GetEnfermedadesDisponibles()
         {
             List<Enfermedad> enfermedades = new List<Enfermedad> {
@@ -287,50 +295,7 @@ namespace SayaGym.Controllers
             return enfermedades;
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
 
-        public IActionResult Logout()
-        {
-            HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
 
-        //proceso de loguearse
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string Correo, string Contraseña)
-        {
-            //verificar si existe el usuario
-            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == Correo && u.Contraseña == Contraseña);
-            if (usuario != null)
-            {
-                //loguear al usuario
-                var userClaims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name, usuario.Nombre),
-                    new Claim(ClaimTypes.Email, usuario.Correo),
-                    new Claim(ClaimTypes.Role, usuario.Rol.ToString()),// guardar el rol del usuario
-                    new Claim("Id", usuario.IdUsuario.ToString())
-                };
-                var grandmaIdentity = new ClaimsIdentity(userClaims, "User Identity");
-                var userPrincipal = new ClaimsPrincipal(grandmaIdentity);
-
-                //guardar el usuario en la sesion
-                await HttpContext.SignInAsync(userPrincipal);
-                //redireccionar al index
-                return RedirectToAction("Index", "Home");
-
-            }
-            else
-            {
-                //no se encontro el usuario
-                TempData["MensajeError"] = "El usuario con ese correo y contraseña no existe";
-                return View();
-            }
-        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿@model SayaGym.Models.Usuario
 
 @{
-    ViewData["Title"] = "Detalles Usuario";
+    ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>View</h1>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Usuario</h4>
     <hr />
@@ -90,8 +91,10 @@
             @Html.DisplayFor(model => model.Estado)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdUsuario">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    
+    <form asp-action="View">
+        <input type="hidden" asp-for="IdUsuario" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
 </div>

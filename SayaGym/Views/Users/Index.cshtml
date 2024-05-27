@@ -98,14 +98,14 @@
                 @Html.DisplayFor(modelItem => item.Edad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Objetivo)
+                @Html.DisplayFor(modelItem => item.ObjetivoTexto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdUsuario }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdUsuario }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.IdUsuario })
             </td>
         </tr>
