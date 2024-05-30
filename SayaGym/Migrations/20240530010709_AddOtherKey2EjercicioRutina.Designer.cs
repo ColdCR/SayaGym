@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SayaGym.Data;
 
@@ -11,9 +12,11 @@ using SayaGym.Data;
 namespace SayaGym.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20240530010709_AddOtherKey2EjercicioRutina")]
+    partial class AddOtherKey2EjercicioRutina
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -612,11 +615,11 @@ namespace SayaGym.Migrations
 
             modelBuilder.Entity("SayaGym.Models.EjercicioRutina", b =>
                 {
-                    b.Property<int>("IdEjercicioRutina")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("IdEjercicio")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEjercicioRutina"));
+                    b.Property<int>("IdRutina")
+                        .HasColumnType("int");
 
                     b.Property<int>("DiaEjercicio")
                         .HasColumnType("int");
@@ -624,16 +627,10 @@ namespace SayaGym.Migrations
                     b.Property<int>("EjercicioIdEjercicio")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdEjercicio")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdRutina")
-                        .HasColumnType("int");
-
                     b.Property<int>("RutinaIdRutina")
                         .HasColumnType("int");
 
-                    b.HasKey("IdEjercicioRutina");
+                    b.HasKey("IdEjercicio", "IdRutina", "DiaEjercicio");
 
                     b.HasIndex("EjercicioIdEjercicio");
 
@@ -1245,7 +1242,7 @@ namespace SayaGym.Migrations
                             Dirección = "",
                             Estado = "A",
                             Estatura = 170m,
-                            FechaDeNacimiento = new DateTime(2024, 5, 30, 11, 20, 52, 460, DateTimeKind.Local).AddTicks(7245),
+                            FechaDeNacimiento = new DateTime(2024, 5, 29, 19, 7, 9, 378, DateTimeKind.Local).AddTicks(9840),
                             Nombre = "Admin",
                             Objetivo = 0,
                             Peso = 80m,

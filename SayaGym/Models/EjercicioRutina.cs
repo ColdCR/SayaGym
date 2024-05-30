@@ -8,6 +8,8 @@
     public class EjercicioRutina
     {
 
+        [Key]
+        public int IdEjercicioRutina { get; set; }
         public int IdRutina { get; set; }
 
         public int IdEjercicio { get; set; }

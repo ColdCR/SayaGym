@@ -7,15 +7,17 @@
     [Table("Ejercicios")]
     public class Ejercicio
     {
+        //constante con las areas a trabajar
+        public static readonly string[] AreasATrabajarDisponibles = new string[] { "Pecho", "Espalda", "Brazos", "Piernas", "Abdomen" };
         [Key]
         public int IdEjercicio { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(255)]
         public string Nombre { get; set; }
 
         [Required]
-        [StringLength (200)]
+        [StringLength (500)]
         public string Descripcion { get; set; }
 
         [Required]

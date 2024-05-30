@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SayaGym.Models;
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace SayaGym.Data
 {
@@ -23,9 +25,6 @@ namespace SayaGym.Data
                 .HasOne(r => r.Usuario) // One Rutina to one Usuario
                 .WithOne(u => u.Rutina) // One Usuario to one Rutina (optional)
                 .HasForeignKey<Rutina>(r => r.IdUsuario); // Foreign key in Rutina table
-
-            modelBuilder.Entity<EjercicioRutina>()
-                .HasKey(er => new { er.IdEjercicio, er.IdRutina });
 
             modelBuilder.Entity<EjercicioRutina>()
                 .HasOne(e => e.Rutina);
@@ -69,39 +68,83 @@ namespace SayaGym.Data
                 new Enfermedad
                 {
                     IdEnfermedad = 2,
-                NombreEnfermedad = "Diabetes",
+                    NombreEnfermedad = "Diabetes",
                 },
                 new Enfermedad
                 {
                     IdEnfermedad = 3,
-                NombreEnfermedad = "Problemas de espalda",
+                    NombreEnfermedad = "Problemas de espalda",
                 },
                 new Enfermedad
                 {
                     IdEnfermedad = 4,
-                NombreEnfermedad = "Problemas de rodilla",
+                    NombreEnfermedad = "Problemas de rodilla",
                 },
                 new Enfermedad
                 {
                     IdEnfermedad = 5,
-                NombreEnfermedad = "Asma",
+                    NombreEnfermedad = "Asma",
                 },
                 new Enfermedad
                 {
                     IdEnfermedad = 6,
-                NombreEnfermedad = "Enfermedad cardíaca",
+                    NombreEnfermedad = "Enfermedad cardíaca",
                 },
                 new Enfermedad
                 {
                     IdEnfermedad = 7,
-                NombreEnfermedad = "Artritis",
+                    NombreEnfermedad = "Artritis",
                 },
                 new Enfermedad
                 {
                     IdEnfermedad = 8,
-                NombreEnfermedad = "Osteoporosis",
+                    NombreEnfermedad = "Osteoporosis",
                 }
             );
+
+            //sacar todas las enfermedades el json
+            string jsonString = File.ReadAllText("Ejercicios.json");
+            JsonDocument document = JsonDocument.Parse(jsonString);
+            List<Ejercicio> EjerciciosAInsertar = new List<Ejercicio>();
+            List<EnfermedadProhibidaEjercicio> EnfermedadProhibidaEjercicioAInsertar = new List<EnfermedadProhibidaEjercicio>();
+            foreach (JsonElement element in document.RootElement.EnumerateArray())
+            {
+                int IdEjercicio = element.GetProperty("IdEjercicio").GetInt32();
+                string Area = element.GetProperty("AreaATrabajar").GetString();
+                string Nombre = element.GetProperty("Nombre").GetString();
+                string Descripcion = element.GetProperty("Descripcion").GetString();
+                Ejercicio Ejercicio = new Ejercicio
+                {
+                    IdEjercicio = IdEjercicio,
+                    AreaATrabajar = Area,
+                    Nombre = Nombre,
+                    Descripcion = Descripcion
+                };
+                EjerciciosAInsertar.Add( Ejercicio );
+                modelBuilder.Entity<Ejercicio>().HasData(Ejercicio);
+                foreach (JsonElement elementEnfermedadProhibida in element.GetProperty("idEnfermedadProhibida").EnumerateArray())
+                {
+                    int IdEnfermedadProhibida = elementEnfermedadProhibida.GetInt32();
+                    EnfermedadProhibidaEjercicio EnfermedadProhibida = new EnfermedadProhibidaEjercicio
+                    {
+                        Ejercicio = Ejercicio,
+                        IdEjercicio = IdEjercicio
+                    };
+                    modelBuilder.Entity<EnfermedadProhibidaEjercicio>()
+                        .HasData(
+                            new {
+                                IdEjercicio = IdEjercicio,
+                                IdEnfermedad = IdEnfermedadProhibida,
+                                EjercicioIdEjercicio = IdEjercicio,
+                                EnfermedadIdEnfermedad = IdEnfermedadProhibida
+                            }
+                        );
+                }
+            }
+
+            
+            
+
         }
 
         public DbSet<Ejercicio> Ejercicio { get; set; }

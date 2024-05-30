@@ -1,20 +1,33 @@
 ﻿@model IEnumerable<SayaGym.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listado de usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Usuarios</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Crear nuevo</a>
 </p>
+<form asp-action="Buscar" >
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="cedulaBuscador" placeholder="Buscar Cedula" aria-label="Cedula" aria-describedby="button-addon2">
+                <button type="submit" class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            </div>
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rol)
@@ -65,10 +78,16 @@
                 @Html.DisplayFor(modelItem => item.IdUsuario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rol)
+                @Html.DisplayFor(modelItem => item.Cedula)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.RolTexto)
+            </td>
+            <td>
+            @if (item.Rol != 0)
+            {
                 @Html.DisplayFor(modelItem => item.Contraseña)
+            }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -100,13 +119,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ObjetivoTexto)
             </td>
-            <td>
+            <td >
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdUsuario }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdUsuario }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdUsuario })
+            <td class="td-actions">
+                
+                @if (item.Rol != 0)
+                {          
+                    
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) <br />
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario })<br />
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
+                }
             </td>
         </tr>
 }

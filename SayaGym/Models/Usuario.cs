@@ -23,6 +23,19 @@ namespace SayaGym.Models
         [Required]
         public int Rol { get; set; }
 
+        public string RolTexto {
+            get 
+            {
+                switch (this.Objetivo)
+                {
+                    case 0: return "Administrador";
+                    case 1: return "Entrenador";
+                    case 2: return "Cliente";
+                    default: return "Desconocido";
+                }
+            } 
+        }
+
         [Required(ErrorMessage = "La clave es requerida")]
         [Display(Name = "Clave")]
         [StringLength(25)]

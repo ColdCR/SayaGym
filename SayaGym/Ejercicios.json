@@ -1,0 +1,541 @@
+﻿[
+    {
+        "IdEjercicio": 1,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Elevación Lateral con Mancuernas",
+        "Descripcion": "Levantar mancuernas hacia los lados del cuerpo hasta la altura de los hombros, manteniendo los brazos ligeramente flexionados.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 2,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Vuelo Posterior del Deltoides con Mancuernas",
+        "Descripcion": "Levantar mancuernas hacia los lados del cuerpo, pero con los brazos ligeramente flexionados hacia adelante, trabajando la parte posterior de los hombros.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 3,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Elevación Frontal con Mancuerna",
+        "Descripcion": "Levantar una mancuerna desde el muslo hasta la altura de los hombros, manteniendo los brazos extendidos hacia adelante.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 4,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Estiramientos de Rostro con Cuerda de Cable",
+        "Descripcion": "Realizar estiramientos hacia adelante con una cuerda de cable, manteniendo los brazos extendidos y controlando el movimiento.",
+        "idEnfermedadProhibida": [7]
+    },
+    {
+        "IdEjercicio": 5,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Press de Hombros Sentado con Mancuernas",
+        "Descripcion": "Sentarse y levantar mancuernas desde los hombros hacia arriba, extendiendo los brazos.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 6,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl de Barra",
+        "Descripcion": "Levantar una barra con peso desde los muslos hasta los hombros, flexionando los codos.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 7,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl con Mancuerna",
+        "Descripcion": "Levantar una mancuerna desde el muslo hasta el hombro, flexionando el codo",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 8,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl de Martillo con Mancuernas",
+        "Descripcion": "Levantar mancuernas con las palmas enfrentadas desde los muslos hasta los hombros, flexionando los codos",
+        "idEnfermedadProhibida": [7]
+    },
+    {
+        "IdEjercicio": 9,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl de Predicador con Kettlebell",
+        "Descripcion": "Realizar curls con una pesa kettlebell apoyando los brazos en un banco inclinado",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 10,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl Inverso con Cable a un Brazo",
+        "Descripcion": "Levantar una polea con peso desde abajo hacia el hombro, con la palma hacia abajo.",
+        "idEnfermedadProhibida": [7]
+    },
+    {
+        "IdEjercicio": 11,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl de Martillo con Cable a un Brazo",
+        "Descripcion": "Levantar una polea con peso desde abajo hacia el hombro, con las palmas enfrentadas",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 12,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl con Banda",
+        "Descripcion": "Realizar curls con una banda elástica, flexionando los codos y resistiendo la tensión de la banda.",
+        "idEnfermedadProhibida": [7]
+    },
+    {
+        "IdEjercicio": 13,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Curl de Concentración con Mancuerna",
+        "Descripcion": "Sentarse en un banco inclinado y levantar una mancuerna desde el muslo hasta el hombro, flexionando el codo.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 14,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Fondos con codos estrechos",
+        "Descripcion": "Realizar fondos con los codos cerca del cuerpo, flexionando los brazos.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 15,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Extensión de Tríceps con Mancuerna Sentado y con los Brazos Elevados",
+        "Descripcion": "Sentarse en un banco y levantar una mancuerna desde detrás de la cabeza hasta estirar el brazo.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 16,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Empujes hacia Abajo con Barra V en Máquina de Poleas",
+        "Descripcion": "Realizar extensiones de tríceps con una barra V en una máquina de poleas, desde arriba hacia abajo.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 17,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Fondos en Banco",
+        "Descripcion": "Acostarse en un banco y realizar fondos con los brazos extendidos detrás de la cabeza.",
+        "idEnfermedadProhibida": [7,3]
+    },
+    {
+        "IdEjercicio": 18,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Extensiones de Tríceps Acostado con Barra",
+        "Descripcion": "Acostarse en un banco y levantar una barra desde detrás de la cabeza hasta estirar el brazo.",
+        "idEnfermedadProhibida": [7]
+    },
+    {
+        "IdEjercicio": 19,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Empuje Hacia Abajo con Cable Cruzado",
+        "Descripcion": "Realizar extensiones de tríceps con un cable cruzado, desde arriba hacia abajo.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 20,
+        "AreaATrabajar": "Brazos",
+        "Nombre": "Empuje hacia abajo con cuerda de cable",
+        "Descripcion": "Realizar extensiones de tríceps con una cuerda de cable, desde arriba hacia abajo.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 21,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Sentadilla con Barra",
+        "Descripcion": "Posición inicial: Ajuste la barra a la altura adecuada, pase debajo de la barra y sosténgala en la parte posterior de los hombros.",
+        "idEnfermedadProhibida": [4,1,3]
+    },
+    {
+        "IdEjercicio": 22,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Sentadilla Búlgara con Mancuernas",
+        "Descripcion": "Realizar una zancada hacia atrás con una pierna apoyada en un banco, flexionando ambas rodillas. Levantar el cuerpo de vuelta a la posición inicial.",
+        "idEnfermedadProhibida": [4,2,1]
+    },
+    {
+        "IdEjercicio": 23,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Zancadas hacia adelante",
+        "Descripcion": "Dar un paso hacia adelante flexionando ambas rodillas hasta que formen ángulos de 90 grados. Volver a la posición inicial.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 24,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Zancada de Reverencia con Barra",
+        "Descripcion": "Realizar una zancada hacia atrás con una pierna, manteniendo la otra extendida y flexionando ambas rodillas. Volver a la posición inicial.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 25,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Sentadilla con Barra Olímpica en Pivote",
+        "Descripcion": "Realizar una sentadilla con una barra olímpica, manteniendo la espalda recta y bajando hasta que los muslos estén paralelos al suelo. Volver a la posición inicial.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 26,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Salto al Cajón",
+        "Descripcion": "Saltar con ambos pies sobre un cajón y aterrizar suavemente. Subir y bajar del cajón de forma controlada",
+        "idEnfermedadProhibida": [4,5]
+    },
+    {
+        "IdEjercicio": 27,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Sentadilla con Pelota Medicinal en la Cabeza",
+        "Descripcion": "Sostener una pelota medicinal sobre la cabeza y realizar una sentadilla manteniendo la espalda recta. Volver a la posición inicial.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 28,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Sentadilla en Máquina Smith",
+        "Descripcion": "Ajustar la máquina a la altura adecuada, sostener la barra en la parte posterior de los hombros y realizar una sentadilla controlada.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 29,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Zancada de reverencia alternada con peso corporal",
+        "Descripcion": "Realizar zancadas hacia atrás alternando las piernas, manteniendo la espalda recta y flexionando ambas rodillas. Volver a la posición inicial.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 30,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Elevaciones de Pantorrilla en Máquina de Pie",
+        "Descripcion": "De pie en una máquina específica, levanta los talones tanto como puedas mientras exhalas, luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 31,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Elevaciones de Pantorrilla Sentado en Máquina",
+        "Descripcion": "Sentado en una máquina, levanta los talones tanto como puedas mientras exhalas, luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 32,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Caminata de Puntas de Pie",
+        "Descripcion": "Camina sobre las puntas de los pies, manteniendo los talones elevados del suelo. Puedes hacerlo en el lugar o desplazándote.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 33,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Elevaciones de Pantorrilla",
+        "Descripcion": "De pie, levanta los talones tanto como puedas, manteniendo el equilibrio, y luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 34,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Elevaciones de Pantorrilla con Barra",
+        "Descripcion": "Utilizando una barra sobre los hombros, levanta los talones tanto como puedas, manteniendo el equilibrio, y luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 35,
+        "AreaATrabajar": "Piernas",
+        "Nombre": "Elevación de Pantorrilla con Cable",
+        "Descripcion": "Con un cable, levanta los talones tanto como puedas, manteniendo el equilibrio, y luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 36,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Press de Banca con Barra",
+        "Descripcion": "Acostarse en un banco plano, tomar la barra con un agarre ligeramente más ancho que los hombros, bajar la barra controladamente hasta el pecho y empujar hacia arriba para extender los brazos",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 37,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Fondos en Caja",
+        "Descripcion": "Apoyar las manos en una caja o banco, extender los brazos para levantar el cuerpo y luego flexionar los codos para bajar el cuerpo hasta que los brazos formen un ángulo de 90 grados",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 38,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Aperturas de Pecho con Mancuernas en Banco Inclinado",
+        "Descripcion": "Acostarse en un banco inclinado, sostener mancuernas con las palmas hacia adentro, abrir los brazos hasta que estén paralelos al suelo y volver a la posición inicial",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 39,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Press de Banca Inclinado con Barra",
+        "Descripcion": "Acostarse en un banco inclinado, tomar la barra con un agarre ligeramente más ancho que los hombros, bajar la barra controladamente hasta el pecho y empujar hacia arriba para extender los brazos",
+        "idEnfermedadProhibida": [5]
+    },
+    {
+        "IdEjercicio": 40,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Variación Cuatro de Estiramiento de Pecho",
+        "Descripcion": "Acostarse boca abajo en un banco, extender los brazos hacia adelante con las manos en el suelo y realizar un estiramiento de pecho",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 41,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Lagartija",
+        "Descripcion": "Colocarse en posición de flexión con las manos y pies apoyados en el suelo, bajar el cuerpo flexionando los codos hasta que el pecho casi toque el suelo, y luego empujar para volver a la posición inicial",
+        "idEnfermedadProhibida": [2,1,3,6]
+    },
+    {
+        "IdEjercicio": 42,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Flexión Inclinada",
+        "Descripcion": "Realizar flexiones con el cuerpo inclinado a 45 grados, manteniendo la espalda recta y flexionando los codos para bajar el pecho hacia el suelo",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 43,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Flexión inclinado hacia abajo",
+        "Descripcion": "Realizar flexiones con el cuerpo inclinado hacia abajo a 90 grados, manteniendo la espalda recta y flexionando los codos para bajar el pecho hacia el suelo",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 44,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Apertura de Pecho con Polea",
+        "Descripcion": "De pie frente a una polea alta, tomar el agarre con ambas manos y abrir los brazos hacia los lados, manteniendo los codos ligeramente flexionados",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 45,
+        "AreaATrabajar": "Pecho",
+        "Nombre": "Press de Pecho con Cable",
+        "Descripcion": "De pie entre dos poleas a la altura del pecho, empujar las manos hacia adelante extendiendo los brazos",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 46,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Elevaciones de Pierna Acostado",
+        "Descripcion": "Acostado boca arriba, con las piernas extendidas, eleva las piernas hasta formar un ángulo recto con el cuerpo y luego baja lentamente",
+        "idEnfermedadProhibida": [6]
+    },
+    {
+        "IdEjercicio": 47,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Despliegues con Máquina",
+        "Descripcion": "En una máquina específica, acostado boca arriba, eleva el tronco flexionando el abdomen y luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 48,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Variante Cuatro del Estiramiento Abdominal",
+        "Descripcion": "\"Acostado boca abajo, con los brazos extendidos, eleva el tronco y las piernas, formando una \"\"V\"\" con el cuerpo.\"",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 49,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Plancha de Antebrazo",
+        "Descripcion": "En posición de plancha, apoyado en los antebrazos y pies, mantén la posición contraído el abdomen",
+        "idEnfermedadProhibida": [1,2,5]
+    },
+    {
+        "IdEjercicio": 50,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Elevaciones de Rodilla Colgando",
+        "Descripcion": "Colgado de una barra, eleva las rodillas hacia el pecho, manteniendo el abdomen contraído",
+        "idEnfermedadProhibida": [1,2,3,6]
+    },
+    {
+        "IdEjercicio": 51,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Despliegues con Barra",
+        "Descripcion": "Sentado con las piernas extendidas y una barra en el pecho, eleva el tronco flexionando el abdomen y luego baja lentamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 52,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Crunch de Pie con Cable",
+        "Descripcion": "De pie frente a una polea baja, toma el agarre con ambas manos y realiza un crunch, flexionando el abdomen",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 53,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Crunch de Rodillas con Barra en Polea",
+        "Descripcion": "Sentado con las rodillas flexionadas y una barra en el pecho, realiza un crunch flexionando el abdomen.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 54,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Abdominales con Mancuerna",
+        "Descripcion": "Acostado boca arriba con una mancuerna en el pecho, realiza un crunch flexionando el abdomen.",
+        "idEnfermedadProhibida": [8,3]
+    },
+    {
+        "IdEjercicio": 55,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Plancha con Pase de Mancuerna",
+        "Descripcion": "En posición de plancha, pasa una mancuerna de un lado a otro por debajo del pecho, manteniendo el abdomen contraído.",
+        "idEnfermedadProhibida": [1,2,5]
+    },
+    {
+        "IdEjercicio": 56,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Escalador de Montañas",
+        "Descripcion": "En posición de plancha, alterna flexionar las rodillas hacia el pecho, manteniendo el abdomen contraído.",
+        "idEnfermedadProhibida": [5,1,2]
+    },
+    {
+        "IdEjercicio": 57,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Rodillas al Pecho con TRX",
+        "Descripcion": "Suspendido en un TRX, eleva las rodillas hacia el pecho, manteniendo el abdomen contraído.",
+        "idEnfermedadProhibida": [3]
+    },
+    {
+        "IdEjercicio": 58,
+        "AreaATrabajar": "Abdomen",
+        "Nombre": "Giro Ruso con Mancuerna",
+        "Descripcion": "Acostado de lado con una mancuerna en el pecho, realiza un giro llevando la mancuerna hacia el suelo, manteniendo las piernas juntas.",
+        "idEnfermedadProhibida": [3]
+    },
+    {
+        "IdEjercicio": 59,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Bandas de Cardio para Martillo y Flexiones de Brazos Jacks",
+        "Descripcion": "Realizar jacks verticales con una banda de resistencia sobre los tobillos, separando y juntando las piernas mientras mueves los brazos en dirección opuesta",
+        "idEnfermedadProhibida": [1]
+    },
+    {
+        "IdEjercicio": 60,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Cardio Remo Ergo con Brazos Solamente",
+        "Descripcion": "Simular el movimiento de remo en un ergómetro, utilizando solo los brazos para impulsar el deslizador hacia atrás y luego volver a la posición inicial.",
+        "idEnfermedadProhibida": [1]
+    },
+    {
+        "IdEjercicio": 61,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Toque de Dedo del Pie",
+        "Descripcion": "Saltar y tocar los dedos de los pies con las manos, manteniendo las piernas extendidas.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 62,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Tijera Cardio hacia Delante",
+        "Descripcion": "Dar pasos grandes hacia adelante alternando las piernas, manteniendo el torso erguido.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 63,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Cardio Box Pies Rápidos",
+        "Descripcion": "Realizar movimientos de boxeo con los pies, dando pequeños saltos y pasos laterales rápidos.",
+        "idEnfermedadProhibida": [5,1]
+    },
+    {
+        "IdEjercicio": 64,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Cardio Cruces de Saltos",
+        "Descripcion": "Saltar cruzando las piernas hacia adelante y hacia atrás, manteniendo el torso erguido.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 65,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Cardio Sprint en Figura de Ocho",
+        "Descripcion": "Correr en una figura de ocho, cambiando de dirección rápidamente.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 66,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Salto Largo Cardio",
+        "Descripcion": "Saltar hacia adelante lo más lejos posible, aterrizando con las rodillas flexionadas.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 67,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Esprint de Carrera Cardiovascular",
+        "Descripcion": "Correr a máxima velocidad durante un período corto de tiempo, seguido de un período de recuperación.",
+        "idEnfermedadProhibida": [4,5]
+    },
+    {
+        "IdEjercicio": 68,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Bicicleta de Asalto Cardiovascular",
+        "Descripcion": "Realizar movimientos de pedaleo en el aire, alternando las piernas rápidamente.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 69,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Tijera Cardio hacia Delante",
+        "Descripcion": "Dar pasos grandes hacia adelante alternando las piernas, manteniendo el torso erguido.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 70,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Cardio Cruces de Saltos",
+        "Descripcion": "Saltar cruzando las piernas hacia adelante y hacia atrás, manteniendo el torso erguido.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 71,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Saltos de Jacks Cardio",
+        "Descripcion": "Realizar jacks verticales, saltando y separando las piernas hacia los lados mientras mueves los brazos en dirección opuesta.",
+        "idEnfermedadProhibida": [4]
+    },
+    {
+        "IdEjercicio": 72,
+        "AreaATrabajar": "Cardio",
+        "Nombre": "Caminar 3 kilometros",
+        "Descripcion": "Realizar caminatas diarias unos tres kilómetros como mínimo. ",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 73,
+        "AreaATrabajar": "Espalda",
+        "Nombre": "Dominadas",
+        "Descripcion": "Agárrate a una barra horizontal con las manos más separadas que el ancho de los hombros. Levanta el cuerpo hasta que la barbilla supere la barra. Baja lentamente hasta la posición inicial.",
+        "idEnfermedadProhibida": [3,8]
+    },
+    {
+        "IdEjercicio": 74,
+        "AreaATrabajar": "Espalda",
+        "Nombre": "Remo con barra",
+        "Descripcion": "De pie, con los pies separados a la anchura de los hombros, sostenga una barra sobre la parte delantera de los muslos. Flexione las rodillas y la cadera hacia adelante, manteniendo la espalda recta. Tire de la barra hacia el pecho, manteniendo los codos cerca del cuerpo. Extienda los brazos para volver a la posición inicial.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 75,
+        "AreaATrabajar": "Espalda",
+        "Nombre": "Jalón al pecho",
+        "Descripcion": "Siéntese en la máquina de jalón al pecho y agarre la barra con las manos a la anchura de los hombros. Tire de la barra hacia el pecho, manteniendo la espalda recta y los codos cerca del cuerpo. Extienda los brazos para volver a la posición inicial.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 76,
+        "AreaATrabajar": "Espalda",
+        "Nombre": "Remo con mancuernas",
+        "Descripcion": "Incline el torso hacia adelante desde la cintura, manteniendo la espalda recta. Sostenga una mancuerna en cada mano con las palmas hacia adentro. Tire de las mancuernas hacia la cadera, manteniendo los codos cerca del cuerpo. Baje las mancuernas lentamente a la posición inicial.",
+        "idEnfermedadProhibida": []
+    },
+    {
+        "IdEjercicio": 77,
+        "AreaATrabajar": "Espalda",
+        "Nombre": "Face pulls",
+        "Descripcion": "Siéntese en una máquina de poleas con un accesorio de agarre frontal. Agarre las manijas con las palmas una frente a la otra. Tire de las manijas hacia la cara, manteniendo los codos cerca del cuerpo. Extienda los brazos para volver a la posición inicial.",
+        "idEnfermedadProhibida": []
+    }
+]

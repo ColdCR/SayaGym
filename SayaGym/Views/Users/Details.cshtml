@@ -81,7 +81,7 @@
             @Html.DisplayNameFor(model => model.Objetivo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Objetivo)
+            @Html.DisplayFor(model => model.ObjetivoTexto)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Estado)
@@ -90,6 +90,32 @@
             @Html.DisplayFor(model => model.Estado)
         </dd>
     </dl>
+
+    @if (Model.EnfermedadesUsuario.Count() > 0)
+    {
+        <b>Enfermedades:</b>
+        <ul>
+            @foreach (EnfermedadUsuario enfermedadUsuario in Model.EnfermedadesUsuario) {
+                <li class = "col-sm-2">
+                    @enfermedadUsuario.Enfermedad.NombreEnfermedad
+                </li>
+            }
+        </ul>
+    }
+
+    <b>AreasATrabajar:</b>
+    <ul>
+        @foreach (AreasATrabajarUsuario area in Model.AreasATrabajar)
+        {
+            <li class="col-sm-2">
+                @area.AreaATrabajar
+            </li>
+        }
+    </ul>
+    @if (Model.Rutina != null)
+    {
+        @Html.Partial("~/Views/Shared/_TableRutina.cshtml", Model.Rutina);
+    }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdUsuario">Edit</a> |

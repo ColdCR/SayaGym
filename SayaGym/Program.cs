@@ -15,7 +15,10 @@ if (StringConexion == null)
     StringConexion = builder.Configuration.GetConnectionString("StringConexion");
 }
 //String de conexion
-builder.Services.AddDbContext<SayaGym.Data.Contexto>(options => options.UseSqlServer(StringConexion));
+builder.Services.AddDbContext<SayaGym.Data.Contexto>(options => {
+    options.UseSqlServer(StringConexion);
+    options.EnableDetailedErrors();
+   });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => 
