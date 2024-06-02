@@ -13,11 +13,20 @@ namespace SayaGym.Controllers
     public class UsersController : Controller
     {
         private readonly Contexto _context = null;
+        private Usuario _usuario;
+        private IHttpContextAccessor _contextAccessor;
 
 
-        public UsersController(Contexto context)
+        public UsersController(Contexto context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _contextAccessor = httpContextAccessor;
+            int UserId = int.Parse(httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id").Value);
+            if (UserId > 0)
+            {
+                //guardar la info del usuario que esta logueado
+                _usuario = GetUsuario(UserId);
+            }
         }
 
         [HttpGet]
@@ -107,7 +116,12 @@ namespace SayaGym.Controllers
             Usuario.Dirección = usuarioEditado.Dirección;
             Usuario.Peso = usuarioEditado.Peso;
             Usuario.Estatura = usuarioEditado.Estatura;
-            Usuario.Estado = usuarioEditado.Estado;
+            
+            //solo permitir editar estado al admin
+            if (_usuario.Rol == 0)
+            {
+                Usuario.Estado = usuarioEditado.Estado;
+            }
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try

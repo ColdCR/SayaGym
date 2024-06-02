@@ -3,6 +3,20 @@
 @{
     ViewData["Title"] = "Salud";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    List<string> ListaEnfermedades = new List<string> { };
+    List<string> ListaAreas = new List<string> { };
+
+    foreach (EnfermedadUsuario enfermedad in Model.EnfermedadesUsuario)
+    {
+        ListaEnfermedades.Add(enfermedad.Enfermedad.NombreEnfermedad);
+    }
+
+    foreach (AreasATrabajarUsuario area in Model.AreasATrabajar)
+    {
+        ListaAreas.Add(area.AreaATrabajar);
+    }
 }
 
 <h1>Salud</h1>
@@ -30,20 +44,25 @@
     <tbody>
     <tr>
         <td>
-                @Html.DisplayFor(model => model.IMC)
+            @Html.DisplayFor(model => model.IMC)
         </td>
         <td>
             @Html.DisplayFor(model => model.Peso)
         </td>
         <td>
-               
+            @string.Join(",", ListaEnfermedades)
         </td>
         <td>
-                
+            @string.Join(",", ListaAreas)
         </td>
         <td>
-                @Html.DisplayFor(model => model.Objetivo)
+            @Html.DisplayFor(model => model.ObjetivoTexto)
         </td>
     </tr>
     </tbody>
 </table>
+@if (Model.Rutina != null)
+{
+    @Html.Partial("~/Views/Shared/_TableRutina.cshtml", Model.Rutina)
+    ;
+}

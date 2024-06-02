@@ -29,7 +29,7 @@ namespace SayaGym.Models
         public string RolTexto {
             get 
             {
-                switch (this.Objetivo)
+                switch (this.Rol)
                 {
                     case 0: return "Administrador";
                     case 1: return "Entrenador";
