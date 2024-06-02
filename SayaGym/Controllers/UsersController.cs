@@ -99,19 +99,14 @@ namespace SayaGym.Controllers
         {
             Usuario Usuario = GetUsuario(usuarioEditado.IdUsuario);//obtener el usuario actual de la base de datos
 
-            bool GenerarNuevaRutina = usuarioEditado.Objetivo != Usuario.Objetivo;
+            bool GenerarNuevaRutina = false;
 
             //solo tomar en cuenta campos que se pueden editar
-            Usuario.Nombre = usuarioEditado.Nombre;
-            Usuario.Rol = usuarioEditado.Rol;
-            Usuario.Sexo = usuarioEditado.Sexo;
             Usuario.Correo = usuarioEditado.Correo;
             Usuario.Teléfono = usuarioEditado.Teléfono;
             Usuario.Dirección = usuarioEditado.Dirección;
             Usuario.Peso = usuarioEditado.Peso;
             Usuario.Estatura = usuarioEditado.Estatura;
-            Usuario.FechaDeNacimiento = usuarioEditado.FechaDeNacimiento;
-            Usuario.Objetivo = usuarioEditado.Objetivo;
             Usuario.Estado = usuarioEditado.Estado;
             using (var transaction = _context.Database.BeginTransaction())
             {

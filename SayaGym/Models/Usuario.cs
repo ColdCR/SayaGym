@@ -3,9 +3,11 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace SayaGym.Models
 {
+
     public class Usuario
     {
         [Key]
@@ -13,6 +15,7 @@ namespace SayaGym.Models
 
         [Display(Name = "Cédula")]
         [Required(ErrorMessage = "La Cédula es requerida")]
+        [ValidarCedula(ErrorMessage = "La Cédula no tiene el formato correcto")]
         public string Cedula { get; set; }
 
         /*
@@ -39,11 +42,13 @@ namespace SayaGym.Models
         [Required(ErrorMessage = "La clave es requerida")]
         [Display(Name = "Clave")]
         [StringLength(25)]
+        [MinLength(5, ErrorMessage = "La clave debe contener minimo 5 caracteres")]
         [DataType(DataType.Password)]
         public string Contraseña { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido")]
         [StringLength(50)]
+        [NoNumerosOCaracteresEspeciales(ErrorMessage = "El nombre contiene caracteres invalidos")]
         public string Nombre { get; set; }
 
         [Required]
@@ -51,6 +56,8 @@ namespace SayaGym.Models
 
         [Required(ErrorMessage = "El teléfono es requerido")]
         [StringLength(8)]
+        [MinLength(8, ErrorMessage = "El teléfono debe ser de minimo 8 caracteres")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "El teléfono contiene caracteres invalidos")]
         public string Teléfono { get; set; }
 
         [StringLength(255)]
@@ -115,4 +122,52 @@ namespace SayaGym.Models
         public ICollection<AreasATrabajarUsuario> AreasATrabajar { get; set; }
         public ICollection<EnfermedadUsuario> EnfermedadesUsuario { get; set; }
     }
+
+    //clase para un atributo personalizado para validar la cedula
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
+    public class ValidarCedula : ValidationAttribute
+    {
+        private const string CedulaRegex = @"^(1[0-9]|[2-8][0-7][0-9]|[9][0-1][0-9])\d{6}$";
+
+        public override bool IsValid(object value)
+        {
+            if (value is string email)
+            {
+                return Regex.IsMatch(email, CedulaRegex);
+            }
+
+            return false;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
+    public class NoNumerosOCaracteresEspeciales : ValidationAttribute
+    {
+        private const string allowedCharactersRegex = @"^[a-zA-Z\s]+$";
+
+        public override bool IsValid(object value)
+        {
+            if (value is string text)
+            {
+                return Regex.IsMatch(text, allowedCharactersRegex);
+            }
+
+            return false;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
+    public class SoloNumeros : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            if (value is string text)
+            {
+                return text.All(char.IsDigit);
+            }
+
+            return false;
+        }
+    }
+
 }
