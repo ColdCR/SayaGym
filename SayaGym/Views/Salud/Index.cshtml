@@ -58,6 +58,9 @@
         <td>
             @Html.DisplayFor(model => model.ObjetivoTexto)
         </td>
+        <td>
+             @Html.ActionLink("Editar", "Edit", new { id = Model.IdUsuario })
+        </td>
     </tr>
     </tbody>
 </table>
