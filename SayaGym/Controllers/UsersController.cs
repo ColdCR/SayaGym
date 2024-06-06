@@ -32,7 +32,7 @@ namespace SayaGym.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Usuario> Usuarios =  Usuarios = await _context.Usuario.ToListAsync();     
+            List<Usuario> Usuarios = Usuarios = await _context.Usuario.ToListAsync();
             return View(Usuarios);
         }
         public async Task<IActionResult> Buscar(string cedulaBuscador)
@@ -116,8 +116,7 @@ namespace SayaGym.Controllers
             Usuario.Dirección = usuarioEditado.Dirección;
             Usuario.Peso = usuarioEditado.Peso;
             Usuario.Estatura = usuarioEditado.Estatura;
-            
-            //solo permitir editar estado al admin
+
             if (_usuario.Rol == 0)
             {
                 Usuario.Estado = usuarioEditado.Estado;
@@ -135,7 +134,7 @@ namespace SayaGym.Controllers
                     {
                         throw new Exception("Eliga almenos 2 areas a trabajar");
                     }
-                    
+
                     //en caso de que el length del array de enfermedades o areas es distinto significa que cambiaron
                     GenerarNuevaRutina |= Usuario.EnfermedadesUsuario.Count() != EnfermedadesForm.Count() || Usuario.AreasATrabajar.Count() != AreasForm.Count();
 
@@ -231,6 +230,8 @@ namespace SayaGym.Controllers
                     transaction.Rollback(); // Revertir la transacción
                 }
             }
+
+            //solo permitir editar estado al admin
             ViewBag.Enfermedades = GetEnfermedades();
             return View(Usuario);
         }
@@ -240,7 +241,8 @@ namespace SayaGym.Controllers
         //metodo para generar la rutina del usuario dependiendo de las enfermedades y objetivos y areas a trabajar que tenga
         private Rutina GenerarRutina(Usuario usuario)
         {
-            Rutina Rutina = new Rutina {
+            Rutina Rutina = new Rutina
+            {
                 IdUsuario = usuario.IdUsuario,
                 Usuario = usuario,
                 FechaRutina = DateTime.Now,
@@ -294,8 +296,8 @@ namespace SayaGym.Controllers
             //guardar todos los ejercicios de tipo Cardio en una lista aparte
             List<Ejercicio> EjerciciosCardio =
                     (from ejercicio in ListaEjercicios
-                    where ejercicio.AreaATrabajar == "Cardio"
-                    select ejercicio).ToList();
+                     where ejercicio.AreaATrabajar == "Cardio"
+                     select ejercicio).ToList();
             //lista para guardar los ejercicios del dia anterior con el fin de no repetir ejercicios
             List<int> IdEjerciciosDiaAnterior = new List<int>();
 
@@ -334,14 +336,15 @@ namespace SayaGym.Controllers
                 foreach (string area in AreasATrabajarEsteDia)
                 {
                     //primero tomamos todos los ejercicios de esa area
-                    List<Ejercicio> EjerciciosAConsiderarEsteDia = 
+                    List<Ejercicio> EjerciciosAConsiderarEsteDia =
                         (from ejercicio in ListaEjercicios
-                        where ejercicio.AreaATrabajar == area
-                        select ejercicio).ToList();
+                         where ejercicio.AreaATrabajar == area
+                         select ejercicio).ToList();
 
                     //ahora tomamos unos ejercicios aleatorios para hoy
                     //dividimos entre 2 para meter la mitad de ejercicios de una zona y la mitad de otra
-                    for (int j = 0; j < CantidadTonificacion / 2; j++) {
+                    for (int j = 0; j < CantidadTonificacion / 2; j++)
+                    {
                         EjerciciosRutina.Add(GetRandomElement(EjerciciosAConsiderarEsteDia));
                     }
                 }
@@ -353,7 +356,7 @@ namespace SayaGym.Controllers
                     EjerciciosRutina.Add(GetRandomElement(EjerciciosCardioEsteDia));
                 }
 
-    
+
 
                 foreach (Ejercicio ejercicio in EjerciciosRutina)
                 {
@@ -386,7 +389,8 @@ namespace SayaGym.Controllers
         {
 
             var Usuario = _context.Usuario.Find(id);
-            if (Usuario != null) {
+            if (Usuario != null)
+            {
                 _context.Usuario.Remove(Usuario);
                 _context.SaveChanges();
             }
@@ -398,89 +402,90 @@ namespace SayaGym.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Usuario usuario)
         {
-
-            using (var transaction = _context.Database.BeginTransaction())
+            if (ModelState.IsValid)
             {
-                try
+                using (var transaction = _context.Database.BeginTransaction())
                 {
-                    //estos datos los tomo del formulario ya que estos campos no vienen como tal en el modelo de Usuario
-                    var FormCollection = Request.Form;
-                    var AreasForm = FormCollection["AreasATrabajar[]"];
-                    var EnfermedadesForm = FormCollection["Enfermedades[]"];
-
-                    if (AreasForm.Count() < 2 && usuario.Rol == 2)
+                    try
                     {
-                        throw new Exception("Eliga almenos 2 areas a trabajar");
-                    }
+                        //estos datos los tomo del formulario ya que estos campos no vienen como tal en el modelo de Usuario
+                        var FormCollection = Request.Form;
+                        var AreasForm = FormCollection["AreasATrabajar[]"];
+                        var EnfermedadesForm = FormCollection["Enfermedades[]"];
 
-                    usuario.Estado = 'A';
-
-                    //verificamos que no exista usuario con la misma cedula
-                    bool findedUser = _context.Usuario.Any(u => u.Cedula == usuario.Cedula);
-                    if (findedUser)
-                    {
-                        throw new Exception("Ya existe un usuario con esa cédula");
-                    }
-
-                    //verificamos que no exista usuario con el mismo correo
-                    findedUser = _context.Usuario.Any(u => u.Correo == usuario.Correo);
-                    if (findedUser)
-                    {
-                        throw new Exception("Ya existe un usuario con ese correo");
-                    }
-
-                    //guardamos el usuario en la base de datos
-                    _context.Usuario.Add(usuario);
-
-                    // Guardar los cambios en la base de datos
-                    _context.SaveChanges();
-
-                    foreach (var EnfermedadForm in EnfermedadesForm)
-                    {
-                        int idEnfermedad = int.Parse(EnfermedadForm);
-                        Enfermedad Enfermedad = _context.Enfermedad.Find(idEnfermedad);
-                        if (Enfermedad == null) continue;
-                        EnfermedadUsuario EnfermedadUsuario = new EnfermedadUsuario
+                        if (AreasForm.Count() < 2 && usuario.Rol == 2)
                         {
-                            IdUsuario = usuario.IdUsuario,
-                            IdEnfermedad = idEnfermedad,
-                            Usuario = usuario,
-                            Enfermedad = Enfermedad
+                            throw new Exception("Eliga almenos 2 areas a trabajar");
+                        }
 
-                        };
-                        _context.EnfermedadesUsuario.Add(EnfermedadUsuario);
-                        _context.SaveChanges();
-                    }
-                    foreach (string AreaForm in AreasForm)
-                    {
+                        usuario.Estado = 'A';
 
-                        AreasATrabajarUsuario Area = new AreasATrabajarUsuario
+                        //verificamos que no exista usuario con la misma cedula
+                        bool findedUser = _context.Usuario.Any(u => u.Cedula == usuario.Cedula);
+                        if (findedUser)
                         {
-                            IdUsuario = usuario.IdUsuario,
-                            AreaATrabajar = AreaForm,
-                            Usuario = usuario
-                        };
-                        _context.AreasATrabajarUsuario.Add(Area);
+                            throw new Exception("Ya existe un usuario con esa cédula");
+                        }
+
+                        //verificamos que no exista usuario con el mismo correo
+                        findedUser = _context.Usuario.Any(u => u.Correo == usuario.Correo);
+                        if (findedUser)
+                        {
+                            throw new Exception("Ya existe un usuario con ese correo");
+                        }
+
+                        //guardamos el usuario en la base de datos
+                        _context.Usuario.Add(usuario);
+
+                        // Guardar los cambios en la base de datos
                         _context.SaveChanges();
-                    }
 
-                    if (usuario.Rol == 2)//solo si es cliente
+                        foreach (var EnfermedadForm in EnfermedadesForm)
+                        {
+                            int idEnfermedad = int.Parse(EnfermedadForm);
+                            Enfermedad Enfermedad = _context.Enfermedad.Find(idEnfermedad);
+                            if (Enfermedad == null) continue;
+                            EnfermedadUsuario EnfermedadUsuario = new EnfermedadUsuario
+                            {
+                                IdUsuario = usuario.IdUsuario,
+                                IdEnfermedad = idEnfermedad,
+                                Usuario = usuario,
+                                Enfermedad = Enfermedad
+
+                            };
+                            _context.EnfermedadesUsuario.Add(EnfermedadUsuario);
+                            _context.SaveChanges();
+                        }
+                        foreach (string AreaForm in AreasForm)
+                        {
+
+                            AreasATrabajarUsuario Area = new AreasATrabajarUsuario
+                            {
+                                IdUsuario = usuario.IdUsuario,
+                                AreaATrabajar = AreaForm,
+                                Usuario = usuario
+                            };
+                            _context.AreasATrabajarUsuario.Add(Area);
+                            _context.SaveChanges();
+                        }
+
+                        if (usuario.Rol == 2)//solo si es cliente
+                        {
+                            //generar la rutina
+                            usuario.Rutina = GenerarRutina(usuario);
+                        }
+                        _context.SaveChanges();
+
+                        transaction.Commit(); // Confirmar la transacción
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception ex)
                     {
-                        //generar la rutina
-                        usuario.Rutina = GenerarRutina(usuario);
+                        TempData["error"] = ex.Message;
+                        transaction.Rollback(); // Revertir la transacción
                     }
-                    _context.SaveChanges();
-
-                    transaction.Commit(); // Confirmar la transacción
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    TempData["error"] = ex.Message;
-                    transaction.Rollback(); // Revertir la transacción
                 }
             }
-
             return Create();
         }
 

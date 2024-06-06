@@ -118,9 +118,9 @@ namespace SayaGym.Models
         [DefaultValue('A')]
         public char Estado { get; set; }
 
-        public Rutina Rutina { get; set; }
-        public ICollection<AreasATrabajarUsuario> AreasATrabajar { get; set; }
-        public ICollection<EnfermedadUsuario> EnfermedadesUsuario { get; set; }
+        public Rutina? Rutina { get; set; }
+        public ICollection<AreasATrabajarUsuario>? AreasATrabajar { get; set; }
+        public ICollection<EnfermedadUsuario>? EnfermedadesUsuario { get; set; }
     }
 
     //clase para un atributo personalizado para validar la cedula
@@ -150,20 +150,6 @@ namespace SayaGym.Models
             if (value is string text)
             {
                 return Regex.IsMatch(text, allowedCharactersRegex);
-            }
-
-            return false;
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
-    public class SoloNumeros : ValidationAttribute
-    {
-        public override bool IsValid(object value)
-        {
-            if (value is string text)
-            {
-                return text.All(char.IsDigit);
             }
 
             return false;
