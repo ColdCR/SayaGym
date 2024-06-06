@@ -52,13 +52,14 @@ namespace SayaGym.Controllers
             _context = context;
             _contextAccessor = httpContextAccessor;
             int UserId = int.Parse(httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id").Value);
-            if (UserId > 0) {
+            if (UserId > 0)
+            {
                 //guardar la info del usuario que esta logueado
                 _usuario = GetInfoUsuario(UserId);
             }
         }
 
-        
+
 
         public async Task<IActionResult> Index()
         {
@@ -85,7 +86,6 @@ namespace SayaGym.Controllers
         public IActionResult Edit(Usuario usuarioEditado)
         {
             Usuario Usuario = GetInfoUsuario(usuarioEditado.IdUsuario);//obtener el usuario actual de la base de datos
-
             bool GenerarNuevaRutina = false;
 
             //solo tomar en cuenta campos que se pueden editar
@@ -94,113 +94,116 @@ namespace SayaGym.Controllers
             Usuario.Dirección = usuarioEditado.Dirección;
             Usuario.Peso = usuarioEditado.Peso;
             Usuario.Estatura = usuarioEditado.Estatura;
-            using (var transaction = _context.Database.BeginTransaction())
+            if (ModelState.IsValid)
             {
-                try
+                using (var transaction = _context.Database.BeginTransaction())
                 {
-                    //estos datos los tomo del formulario ya que estos campos no vienen como tal en el modelo de Usuario
-                    var FormCollection = Request.Form;
-                    var AreasForm = FormCollection["AreasATrabajar[]"];
-                    var EnfermedadesForm = FormCollection["Enfermedades[]"];
-
-                    if (AreasForm.Count() < 2)
+                    try
                     {
-                        throw new Exception("Eliga almenos 2 areas a trabajar");
-                    }
+                        //estos datos los tomo del formulario ya que estos campos no vienen como tal en el modelo de Usuario
+                        var FormCollection = Request.Form;
+                        var AreasForm = FormCollection["AreasATrabajar[]"];
+                        var EnfermedadesForm = FormCollection["Enfermedades[]"];
 
-                    //en caso de que el length del array de enfermedades o areas es distinto significa que cambiaron
-                    GenerarNuevaRutina |= Usuario.EnfermedadesUsuario.Count() != EnfermedadesForm.Count() || Usuario.AreasATrabajar.Count() != AreasForm.Count();
-
-
-                    //verificamos que no exista usuario con la misma cedula
-                    bool findedUser = _context.Usuario.Any(u => u.Cedula == Usuario.Cedula && Usuario.IdUsuario != u.IdUsuario);
-                    if (findedUser)
-                    {
-                        throw new Exception("Ya existe un usuario con esa cédula");
-                    }
-
-                    //verificamos que no exista usuario con el mismo correo
-                    findedUser = _context.Usuario.Any(u => u.Correo == Usuario.Correo && Usuario.IdUsuario != u.IdUsuario);
-                    if (findedUser)
-                    {
-                        throw new Exception("Ya existe un usuario con ese correo");
-                    }
-
-                    List<EnfermedadUsuario> EnfermedadesUsuario = new List<EnfermedadUsuario>();
-
-                    foreach (var EnfermedadForm in EnfermedadesForm)
-                    {
-                        int IdEnfermedad = int.Parse(EnfermedadForm);
-                        var EnfermedadActualUsuario =
-                            (from enfermedad in Usuario.EnfermedadesUsuario.ToList()
-                             where enfermedad.IdEnfermedad == IdEnfermedad
-                             select enfermedad).FirstOrDefault();
-
-                        if (EnfermedadActualUsuario != null)
+                        if (AreasForm.Count() < 2)
                         {
-                            EnfermedadesUsuario.Add((EnfermedadUsuario)EnfermedadActualUsuario);
+                            throw new Exception("Eliga almenos 2 areas a trabajar");
                         }
-                        else
+
+                        //en caso de que el length del array de enfermedades o areas es distinto significa que cambiaron
+                        GenerarNuevaRutina |= Usuario.EnfermedadesUsuario.Count() != EnfermedadesForm.Count() || Usuario.AreasATrabajar.Count() != AreasForm.Count();
+
+
+                        //verificamos que no exista usuario con la misma cedula
+                        bool findedUser = _context.Usuario.Any(u => u.Cedula == Usuario.Cedula && Usuario.IdUsuario != u.IdUsuario);
+                        if (findedUser)
                         {
-                            GenerarNuevaRutina = true;//si hay nueva enfermedad directamente generar nueva rutina
-                            Enfermedad Enfermedad = _context.Enfermedad.Find(IdEnfermedad);
-                            EnfermedadUsuario NuevaEnfermedad = new EnfermedadUsuario
+                            throw new Exception("Ya existe un usuario con esa cédula");
+                        }
+
+                        //verificamos que no exista usuario con el mismo correo
+                        findedUser = _context.Usuario.Any(u => u.Correo == Usuario.Correo && Usuario.IdUsuario != u.IdUsuario);
+                        if (findedUser)
+                        {
+                            throw new Exception("Ya existe un usuario con ese correo");
+                        }
+
+                        List<EnfermedadUsuario> EnfermedadesUsuario = new List<EnfermedadUsuario>();
+
+                        foreach (var EnfermedadForm in EnfermedadesForm)
+                        {
+                            int IdEnfermedad = int.Parse(EnfermedadForm);
+                            var EnfermedadActualUsuario =
+                                (from enfermedad in Usuario.EnfermedadesUsuario.ToList()
+                                 where enfermedad.IdEnfermedad == IdEnfermedad
+                                 select enfermedad).FirstOrDefault();
+
+                            if (EnfermedadActualUsuario != null)
                             {
-                                IdUsuario = Usuario.IdUsuario,
-                                IdEnfermedad = IdEnfermedad,
-                                Usuario = Usuario,
-                                Enfermedad = Enfermedad
-                            };
-                            EnfermedadesUsuario.Add(NuevaEnfermedad);
-                        }
-                    }
-
-                    Usuario.EnfermedadesUsuario = EnfermedadesUsuario;
-
-                    List<AreasATrabajarUsuario> AreasUsuario = new();
-                    foreach (var AreaForm in AreasForm)
-                    {
-                        var AreaActualUsuario =
-                            (from area in Usuario.AreasATrabajar.ToList()
-                             where area.AreaATrabajar == AreaForm
-                             select area).FirstOrDefault();
-
-                        if (AreaActualUsuario != null)
-                        {
-                            AreasUsuario.Add(AreaActualUsuario);
-                        }
-                        else
-                        {
-                            GenerarNuevaRutina = true;//si hay nueva area directamente generar nueva rutina
-                            AreasATrabajarUsuario Area = new AreasATrabajarUsuario
+                                EnfermedadesUsuario.Add((EnfermedadUsuario)EnfermedadActualUsuario);
+                            }
+                            else
                             {
-                                IdUsuario = Usuario.IdUsuario,
-                                AreaATrabajar = AreaForm,
-                                Usuario = Usuario
-                            };
-
-                            AreasUsuario.Add(Area);
+                                GenerarNuevaRutina = true;//si hay nueva enfermedad directamente generar nueva rutina
+                                Enfermedad Enfermedad = _context.Enfermedad.Find(IdEnfermedad);
+                                EnfermedadUsuario NuevaEnfermedad = new EnfermedadUsuario
+                                {
+                                    IdUsuario = Usuario.IdUsuario,
+                                    IdEnfermedad = IdEnfermedad,
+                                    Usuario = Usuario,
+                                    Enfermedad = Enfermedad
+                                };
+                                EnfermedadesUsuario.Add(NuevaEnfermedad);
+                            }
                         }
+
+                        Usuario.EnfermedadesUsuario = EnfermedadesUsuario;
+
+                        List<AreasATrabajarUsuario> AreasUsuario = new();
+                        foreach (var AreaForm in AreasForm)
+                        {
+                            var AreaActualUsuario =
+                                (from area in Usuario.AreasATrabajar.ToList()
+                                 where area.AreaATrabajar == AreaForm
+                                 select area).FirstOrDefault();
+
+                            if (AreaActualUsuario != null)
+                            {
+                                AreasUsuario.Add(AreaActualUsuario);
+                            }
+                            else
+                            {
+                                GenerarNuevaRutina = true;//si hay nueva area directamente generar nueva rutina
+                                AreasATrabajarUsuario Area = new AreasATrabajarUsuario
+                                {
+                                    IdUsuario = Usuario.IdUsuario,
+                                    AreaATrabajar = AreaForm,
+                                    Usuario = Usuario
+                                };
+
+                                AreasUsuario.Add(Area);
+                            }
+                        }
+
+                        Usuario.AreasATrabajar = AreasUsuario;
+
+                        if (GenerarNuevaRutina && Usuario.Rol == 2)
+                        {
+                            Usuario.Rutina = GenerarRutina(Usuario);
+                        }
+
+                        //guardamos el usuario en la base de datos
+                        _context.Usuario.Update(Usuario);
+                        _context.SaveChanges();
+
+                        transaction.Commit(); // Confirmar la transacción
+                        return RedirectToAction("Index");
                     }
-
-                    Usuario.AreasATrabajar = AreasUsuario;
-
-                    if (GenerarNuevaRutina && Usuario.Rol == 2)
+                    catch (Exception ex)
                     {
-                        Usuario.Rutina = GenerarRutina(Usuario);
+                        TempData["error"] = ex.Message;
+                        transaction.Rollback(); // Revertir la transacción
                     }
-
-                    //guardamos el usuario en la base de datos
-                    _context.Usuario.Update(Usuario);
-                    _context.SaveChanges();
-
-                    transaction.Commit(); // Confirmar la transacción
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    TempData["error"] = ex.Message;
-                    transaction.Rollback(); // Revertir la transacción
                 }
             }
             ViewBag.Enfermedades = GetEnfermedades();

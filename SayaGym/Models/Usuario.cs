@@ -15,7 +15,7 @@ namespace SayaGym.Models
 
         [Display(Name = "Cédula")]
         [Required(ErrorMessage = "La Cédula es requerida")]
-        [ValidarCedula(ErrorMessage = "La Cédula no tiene el formato correcto")]
+        [MinLength(9, ErrorMessage = "El Cédula debe ser de minimo 9 caracteres")]
         public string Cedula { get; set; }
 
         /*
@@ -94,6 +94,7 @@ namespace SayaGym.Models
             }
         }
 
+        [Display(Name = "Fecha de nacimiento")]
         [Required(ErrorMessage = "La fecha de nacimiento es requerida")]
         [DataType(DataType.Date)]
         public DateTime FechaDeNacimiento { get; set; }

@@ -48,6 +48,11 @@ namespace SayaGym.Controllers
                 Usuarios = await _context.Usuario.ToListAsync();
             }
 
+            if (Usuarios.Count() == 0)
+            {
+                TempData["error"] = "No se encontraron usuarios con la Cédula " + cedulaBuscador;
+            }
+
             return View("Index", Usuarios);
         }
 

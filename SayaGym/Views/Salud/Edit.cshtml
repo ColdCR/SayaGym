@@ -21,6 +21,12 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(m => m.IdUsuario)
+            @Html.HiddenFor(m => m.Cedula)
+            @Html.HiddenFor(m => m.Rol)
+            @Html.HiddenFor(m => m.Contraseña)
+            @Html.HiddenFor(m => m.Sexo)
+            @Html.HiddenFor(m => m.Correo)
+            @Html.HiddenFor(m => m.Objetivo)
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />

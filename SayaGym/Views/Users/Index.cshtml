@@ -11,10 +11,16 @@
     <a asp-action="Create" class="btn btn-success">Crear nuevo</a>
 </p>
 <form asp-action="Buscar" >
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger col" role="alert">
+            @TempData["error"]
+        </div>
+    }
     <div class="row">
         <div class="col-sm-12">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" name="cedulaBuscador" placeholder="Buscar Cedula" aria-label="Cedula" aria-describedby="button-addon2">
+                <input type="number" class="form-control" name="cedulaBuscador" placeholder="Buscar Cedula" aria-label="Cedula" aria-describedby="button-addon2">
                 <button type="submit" class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
             </div>
         </div>

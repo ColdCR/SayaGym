@@ -43,7 +43,7 @@ namespace SayaGym.Data
                 new Usuario
                 {
                     IdUsuario = 1,
-                    Cedula = "11111111",
+                    Cedula = "111111111",
                     Rol = 0,
                     Contraseña = "admin",
                     Nombre = "Admin",
