@@ -13,10 +13,10 @@
 </style>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col noprint">
             <img src="~/img/logo.png" alt="Logo Saiya Gym" width="400" height="400" />
         </div>
-        <div class="col">
+        <div class="col noprint">
             <h1 class="text-center">Detalles de Usuario</h1>
             <div class="container div-form-create py-5 px-3">
                 <dl class="row">
@@ -128,12 +128,12 @@
     </div>
     @if (Model.Rutina != null)
     {
-        <h2>Rutina</h2>
+        <h2 class="noprint">Rutina</h2>
         @Html.Partial("~/Views/Shared/_TableRutina.cshtml", Model.Rutina)
         ;
     }
 </div>
-<div>
+<div class="noprint">
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.IdUsuario">Editar</a> |
     <a class="btn btn-success" asp-action="Index">Regresar</a>
 </div>

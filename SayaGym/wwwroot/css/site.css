@@ -29,3 +29,18 @@ h2,
 h3{
     font-family:Saiyan
 }
+@media print{
+    .noprint, header, footer{
+        display:none;
+    }
+
+    a{
+        text-decoration:none!important;
+        color:black!important;
+    }
+
+    #divRutina{
+        width:100%;
+    }
+
+}

@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create" class="btn btn-success">Crear nuevo</a>
 </p>
-<form asp-action="Buscar" >
+<form asp-action="Buscar">
     @if (TempData["error"] != null)
     {
         <div class="alert alert-danger col" role="alert">
@@ -26,119 +26,124 @@
         </div>
     </div>
 </form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cedula)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rol)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contraseña)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sexo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Teléfono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dirección)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Peso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estatura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IMC)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objetivo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RolTexto)
-            </td>
-            <td>
-            @if (item.Rol != 0)
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rol)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contraseña)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sexo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Teléfono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dirección)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Correo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Peso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estatura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IMC)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Edad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Objetivo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                @Html.DisplayFor(modelItem => item.Contraseña)
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cedula)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RolTexto)
+                    </td>
+                    <td>
+                        @if (item.Rol != 0)
+                        {
+                            @Html.DisplayFor(modelItem => item.Contraseña)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sexo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teléfono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dirección)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Peso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estatura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IMC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Edad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ObjetivoTexto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td class="td-actions">
+
+                        @if (item.Rol != 0)
+                        {
+
+                            @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) <br />
+                            @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario })
+
+                            <br />
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
+                        }
+                    </td>
+                </tr>
             }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teléfono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dirección)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Peso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estatura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IMC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ObjetivoTexto)
-            </td>
-            <td >
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td class="td-actions">
-                
-                @if (item.Rol != 0)
-                {          
-                    
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) <br />
-                    @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario })<br />
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
-                }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
