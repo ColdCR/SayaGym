@@ -16,6 +16,7 @@ namespace SayaGym.Models
         [Display(Name = "Cédula")]
         [Required(ErrorMessage = "La Cédula es requerida")]
         [MinLength(9, ErrorMessage = "El Cédula debe ser de minimo 9 caracteres")]
+        [RegularExpression("(^[0-9]+$)", ErrorMessage = "Solo se permiten números")]
         public string Cedula { get; set; }
 
         /*
