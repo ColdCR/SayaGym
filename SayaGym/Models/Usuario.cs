@@ -107,6 +107,10 @@ namespace SayaGym.Models
         {
             get
             {
+                if (this.Rol != 2)
+                {
+                    return "";
+                }
                 switch(this.Objetivo)
                 {
                     case 0: return "Mantenerse";

@@ -135,7 +135,7 @@ namespace SayaGym.Controllers
                     var AreasForm = FormCollection["AreasATrabajar[]"];
                     var EnfermedadesForm = FormCollection["Enfermedades[]"];
 
-                    if (AreasForm.Count() < 2)
+                    if (AreasForm.Count() < 2 && Usuario.Rol == 2)
                     {
                         throw new Exception("Eliga almenos 2 areas a trabajar");
                     }

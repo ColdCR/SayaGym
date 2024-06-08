@@ -86,7 +86,7 @@ namespace SayaGym.Controllers
         public IActionResult Edit(Usuario usuarioEditado)
         {
             Usuario Usuario = GetInfoUsuario(usuarioEditado.IdUsuario);//obtener el usuario actual de la base de datos
-            bool GenerarNuevaRutina = false;
+            bool GenerarNuevaRutina = Usuario.Objetivo != usuarioEditado.Objetivo;
 
             //solo tomar en cuenta campos que se pueden editar
             Usuario.Nombre = usuarioEditado.Nombre;
@@ -94,6 +94,7 @@ namespace SayaGym.Controllers
             Usuario.Dirección = usuarioEditado.Dirección;
             Usuario.Peso = usuarioEditado.Peso;
             Usuario.Estatura = usuarioEditado.Estatura;
+            Usuario.Objetivo = usuarioEditado.Objetivo;
             if (ModelState.IsValid)
             {
                 using (var transaction = _context.Database.BeginTransaction())

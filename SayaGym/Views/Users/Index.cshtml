@@ -136,10 +136,8 @@
                         {
 
                             @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) <br />
-                            @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario })
-
-                            <br />
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario })<br />
+                            <a href="javascript:void(0)" onclick="abrirModalEliminar(@item.IdUsuario)">Eliminar</a>
                         }
                     </td>
                 </tr>
@@ -147,3 +145,38 @@
         </tbody>
     </table>
 </div>
+<div class="modal fade" id="alertaModal" tabindex="-1" aria-labelledby="alertaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertaModalLabel">¡Alerta!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="idClienteEliminar" />
+                <p>¿Seguro que deseas eliminar este usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="eliminarCliente()">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function abrirModalEliminar(idClienteEliminar) {
+        document.querySelector("#idClienteEliminar").value = idClienteEliminar;
+        var myModal = new bootstrap.Modal(document.getElementById('alertaModal'))
+        myModal.show();
+    }
+
+    function eliminarCliente() {
+        var myModal = new bootstrap.Modal(document.getElementById('alertaModal'))
+        let IdCliente = document.querySelector("#idClienteEliminar").value;
+        let Url = '@Url.Action("Delete", "Users")' + '/' + IdCliente;
+        location.href = Url;
+        myModal.hide();
+    }
+
+</script>

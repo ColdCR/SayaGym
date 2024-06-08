@@ -26,7 +26,7 @@ namespace SayaGym.Controllers
         public async Task<IActionResult> Login(string correo, string contraseña)
         {
             //verificar si existe el usuario
-            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == correo && u.Contraseña == contraseña);
+            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == correo && u.Contraseña == contraseña && u.Estado == 'A');
             if (usuario != null)
             {
                 //loguear al usuario
@@ -57,7 +57,7 @@ namespace SayaGym.Controllers
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
     }
 }

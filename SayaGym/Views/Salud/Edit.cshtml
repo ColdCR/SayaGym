@@ -34,7 +34,6 @@
                     @Html.HiddenFor(m => m.Contraseña)
                     @Html.HiddenFor(m => m.Sexo)
                     @Html.HiddenFor(m => m.Correo)
-                    @Html.HiddenFor(m => m.Objetivo)
                     <div class="row align-items-center mt-3">
                         <div class="col-3">
                             <label asp-for="Nombre" class="col-form-label fw-bold fs-5"></label>
@@ -90,11 +89,27 @@
                             <span asp-validation-for="Estatura" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="row align-items-center mt-3 d">
+                        <div class="col-3">
+                            <label asp-for="Objetivo" class="col-form-label fw-bold fs-5"></label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="Objetivo" asp-validation-for="Objetivo" class="form-control">
+                                <option value="0" selected>Mantenerse</option>
+                                <option value="1">Bajar de peso</option>
+                                <option value="2">Tonificar</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <span asp-validation-for="Objetivo" class="text-danger"></span>
+                        </div>
+                    </div>
                     <div class="row align-items-center mt-3">
                         <div class="col-3">
                             <label class="col-form-label fw-bold fs-5">Areas a trabajar</label>
                         </div>
                         <div class="col-8">
+                            <button class="btn btn-sm btn-primary" onclick="marcarTodo(event)">Marcar todo</button>
                             @foreach (var area in areasATrabajar)
                             {
                                 string Checked = Model.AreasATrabajar.Any(a => a.AreaATrabajar == area) ? "checked" : "";
@@ -133,10 +148,14 @@
         </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Volver a la lista</a>
-</div>
+<script>
+    function marcarTodo(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        document.querySelectorAll('input[name="AreasATrabajar[]"]')
+            .forEach(el => el.checked = true)
+    }
+</script>
 
 @section Scripts {
     @{

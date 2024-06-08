@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     string[] areasATrabajar = SayaGym.Models.Ejercicio.AreasATrabajarDisponibles;
+    string ClassDiv = Model.Rol == 2 ? "" : "d-none";//agregar clase para esconder ciertos divs cuando no es cliente
 }
 <style>
     .div-form-create {
@@ -83,21 +84,6 @@
                             <span asp-validation-for="Estatura" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="row align-items-center mt-3">
-                        <div class="col-3">
-                            <label asp-for="Objetivo" class="col-form-label fw-bold fs-5"></label>
-                        </div>
-                        <div class="col-8">
-                            <select asp-for="Objetivo" asp-validation-for="Objetivo" class="form-control">
-                                <option value="0" selected>Mantenerse</option>
-                                <option value="1">Bajar de peso</option>
-                                <option value="2">Tonificar</option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <span asp-validation-for="Objetivo" class="text-danger"></span>
-                        </div>
-                    </div>
                     @if (!User.IsInRole("2"))
                     {
                         <div class="row align-items-center mt-3">
@@ -120,11 +106,13 @@
                         @Html.HiddenFor(m => m.Estado)
                         ;
                     }
-                    <div class="row align-items-center mt-3">
+
+                    <div class="row align-items-center mt-3 @ClassDiv">
                         <div class="col-3">
                             <label class="col-form-label fw-bold fs-5">Areas a trabajar</label>
                         </div>
                         <div class="col-8">
+                            <button class="btn btn-sm btn-primary" onclick="marcarTodo(event)">Marcar todo</button>
                             @foreach (var area in areasATrabajar)
                             {
                                 string Checked = Model.AreasATrabajar.Any(a => a.AreaATrabajar == area) ? "checked" : "";
@@ -137,7 +125,7 @@
                             }
                         </div>
                     </div>
-                    <div class="row align-items-center mt-3">
+                    <div class="row align-items-center mt-3 @ClassDiv">
                         <div class="col-3">
                             <label class="col-form-label fw-bold fs-5">Enfermedades</label>
                         </div>
@@ -163,10 +151,14 @@
         </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Volver a la lista</a>
-</div>
+<script>
+    function marcarTodo(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        document.querySelectorAll('input[name="AreasATrabajar[]"]')
+            .forEach(el => el.checked = true)
+    }
+</script>
 
 @section Scripts {
     @{
