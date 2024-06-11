@@ -2,7 +2,7 @@
 @{
     int CantidadEjerciciosPorDias = Model.EjerciciosRutina.Where(e => e.DiaEjercicio == 1).Count();
 }
-<button class="btn btn-sm btn-success noprint" onclick="ImprimirRutina()">Imprimir</button>
+<button class="btn btn-success btn-lg mt-3 noprint " onclick="ImprimirRutina()">Imprimir</button>
 <div class="table-responsive" id="divRutina">
     <table class="table table-striped-columns" style="border: 1px solid black, border-collapse: collapse;">
         <thead>
@@ -19,7 +19,7 @@
                     @for (int dia = 1; dia < 5; dia++)
                     {
                         var EjercicioRutina = Model.EjerciciosRutina.Where(e => e.DiaEjercicio == dia).ToList()[i];
-                        <td style="border: 1px solid black"><a role="button" class="btn btn-link btn-sm" onclick="AbrirModalDescripcion('@EjercicioRutina.Ejercicio.Nombre', '@EjercicioRutina.Ejercicio.Descripcion')">@EjercicioRutina.Ejercicio.Nombre</a></td>
+                        <td style="border: 1px solid black"><a role="button" class="btn btn-outline-dark btn-lg btn-sm mt-3" onclick="AbrirModalDescripcion('@EjercicioRutina.Ejercicio.Nombre', '@EjercicioRutina.Ejercicio.Descripcion')">@EjercicioRutina.Ejercicio.Nombre</a></td>
                     }
                 </tr>
             }

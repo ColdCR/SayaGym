@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/img/logo.png" alt="Logo Saiya Gym" width="50" height="50" />
@@ -20,36 +20,35 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" >
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity.IsAuthenticated && !User.IsInRole("2"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Administracion de Usuarios</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Users" asp-action="Index">Administracion de Usuarios</a>
                             </li>
                         }
                         else if (User.Identity.IsAuthenticated && User.IsInRole("2"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Salud" asp-action="Index">Salud</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Salud" asp-action="Index">Salud</a>
                             </li>
                         }
+                     </ul>
+                     <ul class="navbar-nav flex-grow-2">
 
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="btn btn-outline-success me-2 " type="button" asp-area="" asp-controller="Login" asp-action="Logout">Salir</a>
+                                <a type="button" class="btn btn-dark btn-lg" asp-area="" asp-controller="Login" asp-action="Logout">Salir</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="btn btn-outline-success me-2 " type="button" asp-area="" asp-controller="Login" asp-action="Login">Ingresar</a>
+                                <a type="button" class="btn btn-primary btn-lg" asp-area="" asp-controller="Login" asp-action="Login">Ingresar</a>
                             </li>
-                        }
-
-                       
-                        
+                        }                   
 
                     </ul>
                 </div>
@@ -64,7 +63,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - SayaGym
+            &copy; 2024 - Saya-Gym
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

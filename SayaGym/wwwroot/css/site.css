@@ -1,20 +1,146 @@
-html {
-  font-size: 14px;
-}
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+/* Barra de navegacion oscura */
+.navbar {
+    border: none !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.navbar-nav .nav-item img.navbar-logo {
+    margin-right: 5px;
+    width: 32px; /* Tamaño de la imagen ajustado */
+    height: 32px; /* Tamaño de la imagen ajustado */
+}
+
+/* Letra de la barra de navegacion*/
+.nav-link {
+    font-size: 20px;
+}
+
+/* Espacio para que los elementos de la pagina no choquen con el footer*/
+.col {
+    margin-bottom: 15px;
+}
+
+/* Formulario login */
+.div-form-login {
+    background-color: #BE4F15;
+    border-radius: 25px;
+}
+
+/* Formulario crear usuario */
+.div-form-create {
+    background-color: #FFC000;
+    border-radius: 25px;
+    margin-bottom: 15px; /* Espacio para que la tabla crear no choque con el footer */
+}
+
+.noprint {
+    margin-bottom: 15px; /* Espacio para que llos botones de la vista detalles no choque con el footer */
+}
+/* Acomodar pocision botones del login */
+.text-end {
+    margin: 0px 45px 0px 0px;
+}
+
+
+/* Ajustes de la imagen de fondo */
+#imagenFondo {
+    height: 100%;
+    position: unset;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/kpnet.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+    /* Superposición oscura solo para la imagen de fondo */
+    #imagenFondo::Before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.1); /* Ajusta la opacidad según necesites */
+        z-index: 0; /* Coloca detrás del contenido del body */
+    }
+
+#logoImgIndex {
+    width: 300px;
+    height: 200px;
+    animation: girar 7s linear;
+    margin: -30px 0px 0px 50px;
+}
+
+/* Animación de rotación del logo*/
+@keyframes girar {
+    0% {
+        transform: rotate(0deg); /* Estado inicial: sin rotación */
+    }
+
+    100% {
+        transform: rotate(360deg); /* Estado final: rotación completa */
+    }
+}
+
+
+#logoImgStatic {
+    width: 400px;
+    height: 300px;
+    margin: 40px 0px 0px 90px;
+}
+
+#imagenFondoLogin {
+    background-image: url('../img/goku.jpg') !important;
+}
+
+#imagenFondoRegistros {
+    background-position: center !important;
+    background-size: cover !important;
+    background-image: url('../img/orangegoku.jpg') !important;
+    background-repeat: no-repeat !important;
+}
+
+#imagenFondoDetalles {
+    background-position: center !important;
+    background-size: cover !important;
+    background-image: url('../img/goku2.jpg') !important;
+    background-repeat: no-repeat !important;
+}
+
+/* 
+#imagenGIF {
+    width: 50%; */ /* Tamaño mediano */
+/*  display: block; /* Asegura que la imagen no tenga elementos inline a los lados */
+/*  margin: 0px 0px 0px 10px; /* Centrado horizontal y margen inferior */
+/*  border-radius: 180px; 
+}
+*/
+#textoCentrado {
+    text-align: justify;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Verdana;
+    color: white; /* Blanco */
 }
 
 @font-face {
@@ -26,21 +152,53 @@ body {
 
 h1,
 h2,
-h3{
-    font-family:Saiyan
+h3 {
+    font-family: Saiyan;
+    font-size: 55px;
+    color: black;
 }
-@media print{
-    .noprint, header, footer{
-        display:none;
+
+#titleIndex {
+    font-family: Saiyan;
+    font-size: 55px;
+    color: yellow;
+}
+
+@media print {
+    .noprint, header, footer {
+        display: none;
     }
 
-    a{
-        text-decoration:none!important;
-        color:black!important;
+    a {
+        text-decoration: none !important;
+        color: black !important;
     }
 
-    #divRutina{
-        width:100%;
+    #divRutina {
+        width: 100%;
     }
+}
 
+.table-striped-columns {
+    width: 100%;
+    background-color: orange;
+    border-top-left-radius: 25px; /* Redondear esquina superior izquierda */
+    border-top-right-radius: 25px; /* Redondear esquina superior derecha */
+}
+
+/* Eliminar borde de botones de tabla rutina*/
+.btn-outline-dark {
+    border: none;
+}
+
+.border-top {
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    border: none !important; /* Sin borde (Linea blanca que se presenta en el borde de la seccion)*/
 }

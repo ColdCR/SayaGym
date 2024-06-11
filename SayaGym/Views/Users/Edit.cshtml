@@ -6,151 +6,148 @@
     string[] areasATrabajar = SayaGym.Models.Ejercicio.AreasATrabajarDisponibles;
     string ClassDiv = Model.Rol == 2 ? "" : "d-none";//agregar clase para esconder ciertos divs cuando no es cliente
 }
-<style>
-    .div-form-create {
-        background-color: #FFC000;
-        border-radius: 25px;
-    }
-</style>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <img src="~/img/logo.png" alt="Logo Saiya Gym" width="400" height="400" />
-        </div>
-        <div class="col">
-            <h1 class="text-center">Editar Usuario</h1>
-            @if (TempData["error"] != null)
-            {
-                <div class="alert alert-danger" role="alert">
-                    @TempData["error"]
-                </div>
-            }
-            <form asp-action="Edit">
-                <div class="container div-form-create py-5 px-3">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    @Html.HiddenFor(m => m.IdUsuario)
-                    <div class="row align-items-center mt-3">
-                        <div class="col-3">
-                            <label asp-for="Teléfono" class="col-form-label fw-bold fs-5"></label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="Teléfono" class="form-control" />
-                        </div>
-                        <div class="col-12">
-                            <span asp-validation-for="Teléfono" class="text-danger"></span>
-                        </div>
+
+<body id="imagenFondoRegistros">
+    <div class="container" >
+        <div class="row" >
+            <div class="col">
+                <img src="~/img/logo.png" alt="Logo Saiya Gym" id="logoImgStatic" />
+            </div>
+            <div class="col" id="editTable">
+                <h1 class="text-center">Editar Usuario</h1>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["error"]
                     </div>
-                    <div class="row align-items-center mt-3">
-                        <div class="col-3">
-                            <label asp-for="Dirección" class="col-form-label fw-bold fs-5"></label>
-                        </div>
-                        <div class="col-8">
-                            <textarea asp-for="Dirección" class="form-control"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <span asp-validation-for="Dirección" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mt-3">
-                        <div class="col-3">
-                            <label asp-for="Correo" class="col-form-label fw-bold fs-5"></label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="Correo" class="form-control" />
-                        </div>
-                        <div class="col-12">
-                            <span asp-validation-for="Correo" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mt-3">
-                        <div class="col-3">
-                            <label asp-for="Peso" class="col-form-label fw-bold fs-5"></label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="Peso" type="number" class="form-control" />
-                        </div>
-                        <div class="col-12">
-                            <span asp-validation-for="Peso" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mt-3">
-                        <div class="col-3">
-                            <label asp-for="Estatura" class="col-form-label fw-bold fs-5"></label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="Estatura" type="number" class="form-control" />
-                        </div>
-                        <div class="col-12">
-                            <span asp-validation-for="Estatura" class="text-danger"></span>
-                        </div>
-                    </div>
-                    @if (!User.IsInRole("2"))
-                    {
+                }
+                <form asp-action="Edit">
+                    <div class="container div-form-create py-5 px-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @Html.HiddenFor(m => m.IdUsuario)
                         <div class="row align-items-center mt-3">
                             <div class="col-3">
-                                <label asp-for="Estado" class="col-form-label fw-bold fs-5"></label>
+                                <label asp-for="Teléfono" class="col-form-label fw-bold fs-5"></label>
                             </div>
                             <div class="col-8">
-                                <select asp-for="Estado" asp-validation-for="Estado" class="form-control">
-                                    <option value="A">Activo</option>
-                                    <option value="I">Inactivo</option>
-                                </select>
+                                <input asp-for="Teléfono" class="form-control" />
                             </div>
                             <div class="col-12">
-                                <span asp-validation-for="Estado" class="text-danger"></span>
+                                <span asp-validation-for="Teléfono" class="text-danger"></span>
                             </div>
                         </div>
-                    }
-                    else
-                    {
-                        @Html.HiddenFor(m => m.Estado)
-                        ;
-                    }
+                        <div class="row align-items-center mt-3">
+                            <div class="col-3">
+                                <label asp-for="Dirección" class="col-form-label fw-bold fs-5"></label>
+                            </div>
+                            <div class="col-8">
+                                <textarea asp-for="Dirección" class="form-control"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <span asp-validation-for="Dirección" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-3">
+                            <div class="col-3">
+                                <label asp-for="Correo" class="col-form-label fw-bold fs-5"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Correo" class="form-control" />
+                            </div>
+                            <div class="col-12">
+                                <span asp-validation-for="Correo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-3">
+                            <div class="col-3">
+                                <label asp-for="Peso" class="col-form-label fw-bold fs-5"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Peso" type="number" class="form-control" />
+                            </div>
+                            <div class="col-12">
+                                <span asp-validation-for="Peso" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-3">
+                            <div class="col-3">
+                                <label asp-for="Estatura" class="col-form-label fw-bold fs-5"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Estatura" type="number" class="form-control" />
+                            </div>
+                            <div class="col-12">
+                                <span asp-validation-for="Estatura" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @if (!User.IsInRole("2"))
+                        {
+                            <div class="row align-items-center mt-3">
+                                <div class="col-3">
+                                    <label asp-for="Estado" class="col-form-label fw-bold fs-5"></label>
+                                </div>
+                                <div class="col-8">
+                                    <select asp-for="Estado" asp-validation-for="Estado" class="form-control">
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <span asp-validation-for="Estado" class="text-danger"></span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(m => m.Estado)
+                            ;
+                        }
 
-                    <div class="row align-items-center mt-3 @ClassDiv">
-                        <div class="col-3">
-                            <label class="col-form-label fw-bold fs-5">Areas a trabajar</label>
+                        <div class="row align-items-center mt-3 @ClassDiv">
+                            <div class="col-3">
+                                <label class="col-form-label fw-bold fs-5">Areas a trabajar</label>
+                            </div>
+                            <div class="col-8">
+                                <button class="btn btn-sm btn-primary" onclick="marcarTodo(event)">Marcar todo</button>
+                                @foreach (var area in areasATrabajar)
+                                {
+                                    string Checked = Model.AreasATrabajar.Any(a => a.AreaATrabajar == area) ? "checked" : "";
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="@area" name="AreasATrabajar[]" id="Area-{@area}" @Checked>
+                                        <label class="form-check-label" id="Area-{@area}">
+                                            @area
+                                        </label>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        <div class="col-8">
-                            <button class="btn btn-sm btn-primary" onclick="marcarTodo(event)">Marcar todo</button>
-                            @foreach (var area in areasATrabajar)
-                            {
-                                string Checked = Model.AreasATrabajar.Any(a => a.AreaATrabajar == area) ? "checked" : "";
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="@area" name="AreasATrabajar[]" id="Area-{@area}" @Checked>
-                                    <label class="form-check-label" id="Area-{@area}">
-                                        @area
-                                    </label>
-                                </div>
-                            }
+                        <div class="row align-items-center mt-3 @ClassDiv">
+                            <div class="col-3">
+                                <label class="col-form-label fw-bold fs-5">Enfermedades</label>
+                            </div>
+                            <div class="col-8">
+                                @foreach (Enfermedad enfermedad in ViewBag.Enfermedades)
+                                {
+                                    string Checked = Model.EnfermedadesUsuario.Any(a => a.IdEnfermedad == enfermedad.IdEnfermedad) ? "checked" : "";
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="Enfermedades[]" type="checkbox" value="@enfermedad.IdEnfermedad" id="Enfermedad-{@enfermedad.NombreEnfermedad}" @Checked>
+                                        <label class="form-check-label" id="Enfermedad-{@enfermedad.NombreEnfermedad}">
+                                            @enfermedad.NombreEnfermedad
+                                        </label>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
-                    <div class="row align-items-center mt-3 @ClassDiv">
-                        <div class="col-3">
-                            <label class="col-form-label fw-bold fs-5">Enfermedades</label>
-                        </div>
-                        <div class="col-8">
-                            @foreach (Enfermedad enfermedad in ViewBag.Enfermedades)
-                            {
-                                string Checked = Model.EnfermedadesUsuario.Any(a => a.IdEnfermedad == enfermedad.IdEnfermedad) ? "checked" : "";
-                                <div class="form-check">
-                                    <input class="form-check-input" name="Enfermedades[]" type="checkbox" value="@enfermedad.IdEnfermedad" id="Enfermedad-{@enfermedad.NombreEnfermedad}" @Checked>
-                                    <label class="form-check-label" id="Enfermedad-{@enfermedad.NombreEnfermedad}">
-                                        @enfermedad.NombreEnfermedad
-                                    </label>
-                                </div>
-                            }
-                        </div>
+                    <div class="form-group text-end">
+                        <input type="submit" value="Editar" class="btn btn-primary" />
+                        <a role="button" class="btn btn-success" asp-action="Index">Volver a la lista</a>
                     </div>
-                </div>
-                <div class="form-group text-end">
-                    <input type="submit" value="Editar" class="btn btn-primary" />
-                    <a role="button" class="btn btn-success" asp-action="Index">Volver a la lista</a>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</body>
 <script>
     function marcarTodo(e) {
         e.preventDefault()

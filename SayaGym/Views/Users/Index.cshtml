@@ -135,9 +135,11 @@
                         @if (item.Rol != 0)
                         {
 
-                            @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) <br />
-                            @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario })<br />
-                            <a href="javascript:void(0)" onclick="abrirModalEliminar(@item.IdUsuario)">Eliminar</a>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }, new { @class = "btn btn-info mt-3" }) <br />
+                            @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario }, new { @class = "btn btn-secondary mt-3" })
+
+                            <br />
+                            <a type="button" class="btn btn-danger mt-3" href="javascript:void(0)" onclick="abrirModalEliminar(@item.IdUsuario)">Eliminar</a>
                         }
                     </td>
                 </tr>
