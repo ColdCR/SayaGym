@@ -71,13 +71,13 @@ namespace SayaGym.Models
 
         [Required(ErrorMessage = "El peso es requerido")]
         [Range(0, double.MaxValue, ErrorMessage = "El valor de la {0} debe ser un numero positivo.")]
-        [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "El campo {0} solo admite numeros positivos")]
+        [RegularExpression(@"^[0-9]+([.,][0-9]+)?$", ErrorMessage = "El campo {0} solo admite numeros positivos")]
         [Display(Name = "Peso en Kilogramos")]
         public decimal Peso { get; set; }
 
         [Required(ErrorMessage = "La estatura es requerida")]
         [Range(0, double.MaxValue, ErrorMessage = "El valor de la {0} debe ser un numero positivo.")]
-        [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "El campo {0} solo admite numeros positivos")]
+        [RegularExpression(@"^[0-9]+([.,][0-9]+)?$", ErrorMessage = "El campo {0} solo admite numeros positivos")]
         [Display(Name = "Estatura en Metros")]
         public decimal Estatura { get; set; }
 
