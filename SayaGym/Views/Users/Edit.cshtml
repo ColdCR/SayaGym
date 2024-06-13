@@ -80,8 +80,7 @@
                                 <span asp-validation-for="Estatura" class="text-danger"></span>
                             </div>
                         </div>
-                        @if (!User.IsInRole("2"))
-                        {
+
                             <div class="row align-items-center mt-3">
                                 <div class="col-3">
                                     <label asp-for="Estado" class="col-form-label fw-bold fs-5"></label>
@@ -96,12 +95,7 @@
                                     <span asp-validation-for="Estado" class="text-danger"></span>
                                 </div>
                             </div>
-                        }
-                        else
-                        {
-                            @Html.HiddenFor(m => m.Estado)
-                            ;
-                        }
+
 
                         <div class="row align-items-center mt-3 @ClassDiv">
                             <div class="col-3">
