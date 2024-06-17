@@ -26,9 +26,14 @@ namespace SayaGym.Controllers
         public async Task<IActionResult> Login(string correo, string contraseña)
         {
             //verificar si existe el usuario
-            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == correo && u.Contraseña == contraseña && u.Estado == 'A');
+            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == correo && u.Contraseña == contraseña);
             if (usuario != null)
             {
+                if (usuario.Estado == 'I')
+                {
+                    TempData["MensajeError"] = "El usuario se encuentra inactivado";
+                    return View();
+                }
                 //loguear al usuario
                 var UserClaims = new List<Claim>()
                 {
