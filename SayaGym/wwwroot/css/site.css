@@ -17,7 +17,7 @@ body {
 /* Barra de navegacion oscura */
 .navbar {
     border: none !important;
-    background-color: rgba(0, 0, 0, 0.3) !important;
+    background-color: rgba(211, 211, 211, 0.3) !important;
 }
 
 .navbar-nav .nav-item img.navbar-logo {
@@ -106,7 +106,6 @@ body {
 #logoImgStatic {
     width: 400px;
     height: 300px;
-    margin: 40px 0px 0px 90px;
 }
 
 #imagenFondoLogin {
@@ -199,6 +198,6 @@ h3 {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7) !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
     border: none !important; /* Sin borde (Linea blanca que se presenta en el borde de la seccion)*/
 }
