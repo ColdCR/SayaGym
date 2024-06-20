@@ -65,6 +65,7 @@ namespace SayaGym.Models
         public string Dirección { get; set; }
 
         [Required(ErrorMessage = "El correo es requerido")]
+        [Display(Name = "Email")]
         [StringLength(50)]
         [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
