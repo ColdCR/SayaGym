@@ -110,6 +110,8 @@ body {
 
 #imagenFondoLogin {
     background-image: url('../img/goku.jpg') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
 }
 
 #imagenFondoRegistros {
