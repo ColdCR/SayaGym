@@ -66,7 +66,7 @@ namespace SayaGym.Models
 
         [Required(ErrorMessage = "El correo es requerido")]
         [StringLength(50)]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Digite un correo valido")]
         public string Correo { get; set; }
 
         [Required(ErrorMessage = "El peso es requerido")]

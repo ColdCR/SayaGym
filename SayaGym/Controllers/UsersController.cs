@@ -121,11 +121,8 @@ namespace SayaGym.Controllers
             Usuario.Dirección = usuarioEditado.Dirección;
             Usuario.Peso = usuarioEditado.Peso;
             Usuario.Estatura = usuarioEditado.Estatura;
-
-            if (_usuario.Rol == 0)
-            {
-                Usuario.Estado = usuarioEditado.Estado;
-            }
+            Usuario.Estado = usuarioEditado.Estado;
+            
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
